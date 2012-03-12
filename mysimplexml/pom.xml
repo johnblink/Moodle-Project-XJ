@@ -1,8 +1,8 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
 
-  
+
 	<groupId>dcll.vheu</groupId>
 	<artifactId>MySimpleXML</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
@@ -16,7 +16,7 @@
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit-dep</artifactId>
-			<version>4.10</version>	
+			<version>4.10</version>
 		</dependency>
 		<dependency>
 			<groupId>xom</groupId>
@@ -24,10 +24,15 @@
 			<version>1.2.5</version>
 		</dependency>
 		<dependency>
-		 <groupId>jdom</groupId>
-    <artifactId>jdom</artifactId>
-    <version>1.1</version>
-    </dependency>
+			<groupId>jdom</groupId>
+			<artifactId>jdom</artifactId>
+			<version>1.1</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.jcr</groupId>
+			<artifactId>jcr</artifactId>
+			<version>2.0</version>
+		</dependency>
 	</dependencies>
 	<build>
 		<plugins>
