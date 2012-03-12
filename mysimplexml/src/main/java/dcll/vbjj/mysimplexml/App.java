@@ -32,9 +32,10 @@ public class App
 	      }
 	      catch(Exception e){}
 
-	      System.out.println(sxb.getErrorHandler().toString());
 	      //On initialise un nouvel élément racine avec l'élément racine du document.
 	      racine = document.getRootElement();
+	      
+	      System.out.println(racine.getText());
 
 	      //On crée une List contenant tous les noeuds "etudiant" de l'Element racine
 		  List listQuestion = racine.getChildren("question");
@@ -46,7 +47,7 @@ public class App
 			  //selectionner un noeud fils, modifier du texte, etc...
 			  Element courant = (Element)i.next();
 			  //On affiche le nom de l'element courant
-			  System.out.println(courant.getChild("answer").getText());
+			  System.out.println(courant.getText());
 		  }
 	}
 	
