@@ -35,7 +35,7 @@ public class App
 	      //On initialise un nouvel élément racine avec l'élément racine du document.
 	      racine = document.getRootElement();
 	      
-	      System.out.println(racine.getText());
+	      System.out.println("<"+racine.getText()+">");
 
 	      //On crée une List contenant tous les noeuds "etudiant" de l'Element racine
 		  List listQuestion = racine.getChildren("question");
