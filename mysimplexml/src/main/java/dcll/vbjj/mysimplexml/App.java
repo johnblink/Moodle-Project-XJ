@@ -16,12 +16,12 @@ public class App
 {
 	//Nous allons commencer notre arborescence en créant la racine XML
 	//qui sera ici "personnes".
-	static Element racine = new Element("quiz");
+	private Element racine = new Element("quiz");
 
 	//On crée un nouveau Document JDOM basé sur la racine que l'on vient de créer
-	static Document document = new Document(racine);
+	private Document document = new Document(racine);
 	
-	public static void xml2Java(String file) {
+	public void xml2Java(String file) {
 		 //On crée une instance de SAXBuilder
 	      SAXBuilder sxb = new SAXBuilder();
 	      try
@@ -30,7 +30,8 @@ public class App
 	    	 System.out.println(f.canRead());
 	         //On crée un nouveau document JDOM avec en argument le fichier XML
 	         //Le parsing est terminé ;)
-	         document = sxb.build(f);
+	         //document = sxb.build(this.getClass().getResourceAsStream(file));
+	    	 document = sxb.build(file);
 	      }
 	      catch(Exception e){}
 
@@ -53,8 +54,7 @@ public class App
 		  }
 	}
 	
-    public static void main( String[] args )
-    {
-        xml2Java("Test.xml");
-    }
+	public App() {
+		
+	}
 }
