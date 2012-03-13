@@ -53,6 +53,8 @@ public class App
 	
     public static void main( String[] args )
     {
+    	/* On va apprendre a parser man */
+    	int i;
         xml2Java("Test.xml");
     }
 }
