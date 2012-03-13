@@ -26,9 +26,11 @@ public class App
 	      SAXBuilder sxb = new SAXBuilder();
 	      try
 	      {
+	    	 File f = new File(file);
+	    	 System.out.println(f.canRead());
 	         //On crée un nouveau document JDOM avec en argument le fichier XML
 	         //Le parsing est terminé ;)
-	         document = sxb.build(new File(file));
+	         document = sxb.build(f);
 	      }
 	      catch(Exception e){}
 
