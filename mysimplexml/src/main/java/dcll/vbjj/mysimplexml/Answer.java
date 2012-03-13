@@ -17,7 +17,7 @@ public class Answer {
 		this.feedBackText = feedBackText;
 	}
 	
-	public void affiche() {
-		System.out.println("text : "+text);
+	public String toString() {
+		return "<Answer> text: "+text+" - fraction="+fraction+" - feedBackText: "+feedBackText;
 	}
 }

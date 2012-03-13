@@ -13,11 +13,9 @@ public class TrueFalse extends Question {
 		listAnswer.add(a);
 	}
 	
-	public void affiche() {
-		System.out.println("Affichage TrueFalse");
-		Iterator<Answer> i = listAnswer.iterator();
-		while(i.hasNext()) {
-			i.next().affiche();
-		}
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return "Affichage TrueFalse\n"+listAnswer.toString()+"\n";
 	}
 }

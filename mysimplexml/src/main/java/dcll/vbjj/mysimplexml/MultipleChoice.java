@@ -7,4 +7,11 @@ public class MultipleChoice extends Question {
 	private boolean single;
 	private String answernumbering;
 	private ArrayList<Answer> listAnswer = new ArrayList<Answer>();
+	
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return "Implements me!";
+	}
+
 }

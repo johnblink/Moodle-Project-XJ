@@ -3,6 +3,8 @@ package dcll.vbjj.mysimplexml;
 public class Main {
     public static void main( String[] args )
     {
-        new App().xml2Java("src/main/java/xmlsample/Test.xml");
+        App test = new App();
+        test.xml2Java("src/main/java/xmlsample/Test.xml");
+        test.affiche();
     }
 }
