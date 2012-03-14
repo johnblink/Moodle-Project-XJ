@@ -1,7 +1,6 @@
 package dcll.vbjj.mysimplexml;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 
 public class TrueFalse extends Question {
 	private ArrayList<Answer> listAnswer = new ArrayList<Answer>();

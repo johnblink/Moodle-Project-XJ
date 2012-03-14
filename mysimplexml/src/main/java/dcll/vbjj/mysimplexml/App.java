@@ -3,8 +3,8 @@ package dcll.vbjj.mysimplexml;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.logging.Logger;
 
-import org.jdom.Document;
 import org.jdom.Element;
 import org.jdom.input.SAXBuilder;
 
@@ -13,17 +13,40 @@ public class App
 	private ArrayList<Question> listQuestion = new ArrayList<Question>();
 	
 	private void parser(Element e) {
-		if(e.getAttributeValue("type").equals("truefalse")) {
-			TrueFalse tf = new TrueFalse();
-			Answer a = new Answer(e.getChild("name").getChildText("text"));
-			tf.ajoutAnswer(a);
-			listQuestion.add(tf);
-		}
-		if(e.getAttributeValue("type").equals("shortanswer")) {
-			ShortAnswer sa = new ShortAnswer();
-			Answer a = new Answer(e.getChild("name").getChildText("text"));
-			sa.ajoutAnswer(a);
-			listQuestion.add(sa);
+		switch(e.getAttributeValue("type")) {
+			case "truefalse" :
+				TrueFalse tf = new TrueFalse();
+				Answer a = new Answer(e.getChild("name").getChildText("text"));
+				tf.ajoutAnswer(a);
+				listQuestion.add(tf);
+				break;
+				
+			case "shortanswer" :
+				ShortAnswer sa = new ShortAnswer();
+				a = new Answer(e.getChild("name").getChildText("text"));
+				sa.ajoutAnswer(a);
+				listQuestion.add(sa);
+				break;
+				
+			case "essay" :
+				
+				break;
+				
+			case "multichoice" :
+				
+				break;
+				
+			case "matching" :
+				
+				break;
+			
+			case "numerical" :
+				
+				break;
+				
+			default :
+				Logger logger = Logger.getLogger("app");
+				logger.info(e.getAttributeValue("type"));
 		}
 	}
 	
@@ -39,7 +62,7 @@ public class App
 		}
 		catch(Exception e){}
 		
-		Iterator i = racine.getChildren("question").iterator();
+		Iterator<?> i = racine.getChildren("question").iterator();
 		while(i.hasNext())
 			parser((Element)i.next());
 	}
