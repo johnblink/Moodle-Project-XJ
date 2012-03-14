@@ -29,7 +29,10 @@ public class App
 				break;
 				
 			case "essay" :
-				
+				Essay es = new Essay();
+				a = new Answer(e.getChild("name").getChildText("text"));
+				es.ajoutAnswer(a);
+				listQuestion.add(es);
 				break;
 				
 			case "multichoice" :

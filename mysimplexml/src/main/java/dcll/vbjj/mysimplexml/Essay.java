@@ -10,5 +10,9 @@ public class Essay extends Question{
 		// TODO Auto-generated method stub
 		return listAnswer.toString();
 	}
+	
+	public void ajoutAnswer(Answer a) {
+		listAnswer.add(a);
+	}
 
 }
