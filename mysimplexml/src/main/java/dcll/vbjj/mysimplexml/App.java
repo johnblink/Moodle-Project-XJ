@@ -27,17 +27,19 @@ public class App
 				break;
 				
 			case "shortanswer" :
-				/*ShortAnswer sa = new ShortAnswer();
-				Answer a = new Answer(e.getChild("name").getChildText("text"),e.getAttributeValue("fraction"));
-				sa.ajoutAnswer(a);
-				listQuestion.add(sa);*/
+				ShortAnswer sa = new ShortAnswer(e.getChild("name").getChildText("text"),e.getChild("questiontext").getChildText("text"),e.getChild("questiontext").getAttributeValue("format"),e.getChild("image").getValue(),e.getChild("generalfeedback").getTextTrim(),e.getChild("defaultgrade").getText(),e.getChild("penalty").getTextTrim(),e.getChild("hidden").getText(),e.getChild("shuffleanswers").getText(),e.getChild("usecase").getText());
+				ite = e.getChildren("answer").iterator();
+				while(ite.hasNext()) {
+					Element parcour = (Element) ite.next();
+					if(parcour.getName().equals("answer"))
+						sa.ajoutAnswer(new Answer(parcour.getChildTextTrim("text"),parcour.getAttributeValue("fraction"),parcour.getChildTextTrim("feedback")));
+				}
+				listQuestion.add(sa);
 				break;
 				
 			case "essay" :
-				/*Essay es = new Essay(e.getChild("questiontext").getChildText("text"));
-				a = new Answer(e.getChild("name").getChildText("text"));
-				es.ajoutAnswer(a);
-				listQuestion.add(es);*/
+				Essay es = new Essay(e.getChild("name").getChildText("text"),e.getChild("questiontext").getChildText("text"),e.getChild("questiontext").getAttributeValue("format"),e.getChild("image").getValue(),e.getChild("generalfeedback").getTextTrim(),e.getChild("defaultgrade").getText(),e.getChild("penalty").getTextTrim(),e.getChild("hidden").getText(),e.getChild("shuffleanswers").getText(),new Answer(e.getChild("answer").getChildText("text"),e.getChild("answer").getAttributeValue("fraction"),e.getChild("answer").getChild("feedback").getTextTrim()));
+				listQuestion.add(es);
 				break;
 				
 			case "multichoice" :
@@ -49,7 +51,8 @@ public class App
 				break;
 			
 			case "numerical" :
-				
+				NumericalAnswer na = new NumericalAnswer();
+				listQuestion.add(na);
 				break;
 				
 			case "calculated" :

@@ -3,21 +3,32 @@ package dcll.vbjj.mysimplexml;
 import java.util.ArrayList;
 
 public class Essay extends Question{
-	private ArrayList<Answer> listAnswer = new ArrayList<Answer>();
+	private Answer answer;
 	private String questionText;
+	private String format;
+	private String image;
+	private String generalfeedback;
+	private String defaultgrade;
+	private String penalty;
+	private String hidden;
+	private String shuffleanswers;
 	
-	public Essay(String qt) {
-		questionText = qt;
+	public Essay(String name, String qt, String format, String image, String generalfeedback, String defaultgrade, String penalty, String hidden, String shuffleanswers, Answer answer) {
+		this.questionText = qt;
+		this.name = name;
+		this.format = format;
+		this.image = image;
+		this.generalfeedback = generalfeedback;
+		this.defaultgrade = defaultgrade;
+		this.penalty = penalty;
+		this.hidden = hidden;
+		this.shuffleanswers = shuffleanswers;
+		this.answer = answer;
 	}
 
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
-		return "Affichage Essay\n"+listAnswer.toString()+"\n"+questionText+"\n";
+		return "\nAffichage Essay\n"+"==> "+name+"\n(image="+image+" - generalfeedback="+generalfeedback+" - format="+format+" - defaultgrade="+defaultgrade+" - penalty="+penalty+" - hidden="+hidden+" - shuffleanswer="+shuffleanswers+")\n"+questionText+"\n"+answer.toString();
 	}
-	
-	public void ajoutAnswer(Answer a) {
-		listAnswer.add(a);
-	}
-
 }
