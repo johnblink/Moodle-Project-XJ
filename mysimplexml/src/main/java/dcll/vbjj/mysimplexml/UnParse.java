@@ -62,7 +62,7 @@ public class UnParse {
 			typeQuestion="calculated";
 			question = new Element(typeQuestion);
 			racine.addContent(question);
-			
+			System.out.println("Question1");
 			// Find Attribute to the object
 			Attribute classe = new Attribute("test","test");
 			question.setAttribute(classe);
@@ -70,33 +70,39 @@ public class UnParse {
 			
 		case "dcll.vbjj.mysimplexml.Essay":
 			typeQuestion="essay";
+			System.out.println("Question2");
 			break;
 			
 		case "dcll.vbjj.mysimplexml.Matching":
 			typeQuestion="matching";
+			System.out.println("Question3");
 			break;
 		
 		case "dcll.vbjj.mysimplexml.MultipleChoice":
 			typeQuestion="multiplechoice";
+			System.out.println("Question4");
 			break;
 		
 		case "dcll.vbjj.mysimplexml.NumericalAnswer":
 			typeQuestion="numericalanswer";
+			System.out.println("Question5");
 			break;
 		
 		case "dcll.vbjj.mysimplexml.ShortQuestion":
 			typeQuestion="shortquestion";
+			System.out.println("Question6");
 			break;
 		
 		case "dcll.vbjj.mysimplexml.TrueFalse":
 			typeQuestion="truefalse";
+			System.out.println("Question7");
 			break;
 		
 		default:
 		}
 	}
 	
-	private void run (ArrayList<Question> listQuestion){
+	public void run (ArrayList<Question> listQuestion){
 		
 		this.listQuestion = listQuestion;
 		Iterator<?> i = listQuestion.iterator();
@@ -106,13 +112,4 @@ public class UnParse {
 		
 		enregistre("src/main/java/xmlsample/quiz.xml");
 	}
-	
-	
-	public static void main(String[] args) {
-		
-		ArrayList<Question> l = new ArrayList<Question>();
-		UnParse unparse = new UnParse();
-		unparse.run(l); 
-	}
-
 }
