@@ -16,28 +16,28 @@ public class App
 	private void parser(Element e) {
 		switch(e.getAttributeValue("type")) {
 			case "truefalse" :
-				TrueFalse tf = new TrueFalse(e.getChild("name").getChildText("text"),e.getChild("questiontext").getChildText("text"),e.getChild("questiontext").getAttributeValue("format"),e.getChild("image").getValue(),e.getChild("generalfeedback").getTextTrim(),e.getChild("defaultgrade").getText(),e.getChild("penalty").getTextTrim(),e.getChild("penalty").getText(),e.getChild("hidden").getText());
+				TrueFalse tf = new TrueFalse(e.getChild("name").getChildText("text"),e.getChild("questiontext").getChildText("text"),e.getChild("questiontext").getAttributeValue("format"),e.getChild("image").getValue(),e.getChild("generalfeedback").getTextTrim(),e.getChild("defaultgrade").getText(),e.getChild("penalty").getTextTrim(),e.getChild("hidden").getText(),e.getChild("shuffleanswers").getText());
 				Iterator<?> ite = e.getChildren("answer").iterator();
 				while(ite.hasNext()) {
 					Element parcour = (Element) ite.next();
 					if(parcour.getName().equals("answer"))
-						tf.ajoutAnswer(new Answer(parcour.getChildText("text")));
+						tf.ajoutAnswer(new Answer(parcour.getChildText("text"),parcour.getAttributeValue("fraction"),parcour.getChild("feedback").getTextTrim()));
 				}
 				listQuestion.add(tf);
 				break;
 				
 			case "shortanswer" :
-				ShortAnswer sa = new ShortAnswer();
-				Answer a = new Answer(e.getChild("name").getChildText("text"));
+				/*ShortAnswer sa = new ShortAnswer();
+				Answer a = new Answer(e.getChild("name").getChildText("text"),e.getAttributeValue("fraction"));
 				sa.ajoutAnswer(a);
-				listQuestion.add(sa);
+				listQuestion.add(sa);*/
 				break;
 				
 			case "essay" :
-				Essay es = new Essay(e.getChild("questiontext").getChildText("text"));
+				/*Essay es = new Essay(e.getChild("questiontext").getChildText("text"));
 				a = new Answer(e.getChild("name").getChildText("text"));
 				es.ajoutAnswer(a);
-				listQuestion.add(es);
+				listQuestion.add(es);*/
 				break;
 				
 			case "multichoice" :
