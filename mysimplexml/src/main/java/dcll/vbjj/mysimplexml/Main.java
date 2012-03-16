@@ -6,5 +6,6 @@ public class Main {
         App test = new App();
         test.xml2Java("src/main/java/xmlsample/Test.xml");
         test.affiche();
+        test.getQuestions();
     }
 }
