@@ -18,6 +18,6 @@ public class Answer {
 	}
 	
 	public String toString() {
-		return "<Answer> text: "+text+" - fraction="+fraction+" - feedBackText: "+feedBackText;
+		return "Answer :"+text+" - "+fraction+" - "+feedBackText+"\n";
 	}
 }

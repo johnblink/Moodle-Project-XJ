@@ -3,6 +3,7 @@ package dcll.vbjj.mysimplexml;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 import java.util.logging.Logger;
 
 import org.jdom.Element;
@@ -15,21 +16,25 @@ public class App
 	private void parser(Element e) {
 		switch(e.getAttributeValue("type")) {
 			case "truefalse" :
-				TrueFalse tf = new TrueFalse();
-				Answer a = new Answer(e.getChild("name").getChildText("text"));
-				tf.ajoutAnswer(a);
+				TrueFalse tf = new TrueFalse(e.getChild("name").getChildText("text"),e.getChild("questiontext").getChildText("text"),e.getChild("questiontext").getAttributeValue("format"),e.getChild("image").getValue(),e.getChild("generalfeedback").getTextTrim(),e.getChild("defaultgrade").getText(),e.getChild("penalty").getTextTrim(),e.getChild("penalty").getText(),e.getChild("hidden").getText());
+				Iterator<?> ite = e.getChildren("answer").iterator();
+				while(ite.hasNext()) {
+					Element parcour = (Element) ite.next();
+					if(parcour.getName().equals("answer"))
+						tf.ajoutAnswer(new Answer(parcour.getChildText("text")));
+				}
 				listQuestion.add(tf);
 				break;
 				
 			case "shortanswer" :
 				ShortAnswer sa = new ShortAnswer();
-				a = new Answer(e.getChild("name").getChildText("text"));
+				Answer a = new Answer(e.getChild("name").getChildText("text"));
 				sa.ajoutAnswer(a);
 				listQuestion.add(sa);
 				break;
 				
 			case "essay" :
-				Essay es = new Essay();
+				Essay es = new Essay(e.getChild("questiontext").getChildText("text"));
 				a = new Answer(e.getChild("name").getChildText("text"));
 				es.ajoutAnswer(a);
 				listQuestion.add(es);
@@ -44,6 +49,10 @@ public class App
 				break;
 			
 			case "numerical" :
+				
+				break;
+				
+			case "calculated" :
 				
 				break;
 				
