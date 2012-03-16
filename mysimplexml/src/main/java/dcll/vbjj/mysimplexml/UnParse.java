@@ -108,6 +108,7 @@ public class UnParse {
 		Iterator<?> i = listQuestion.iterator();
 		
 		while(i.hasNext())
+			System.out.println("Question---");
 			parcoursQuestions((Question)i.next());
 		
 		enregistre("src/main/java/xmlsample/quiz.xml");

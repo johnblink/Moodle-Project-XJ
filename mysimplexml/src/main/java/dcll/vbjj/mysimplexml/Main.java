@@ -8,9 +8,9 @@ public class Main {
         App test = new App();
         test.xml2Java("src/main/java/xmlsample/Test.xml");
         test.affiche();
-        /*ArrayList <Question> l = test.getQuestions();
+        ArrayList <Question> l = test.getQuestions();
         System.out.println(l.size());
         UnParse unparse = new UnParse();
-		unparse.run(l); */
+		unparse.run(l);
     }
 }
