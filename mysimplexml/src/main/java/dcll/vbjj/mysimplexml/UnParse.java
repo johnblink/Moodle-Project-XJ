@@ -1,10 +1,7 @@
 package dcll.vbjj.mysimplexml;
 
 
-import java.io.File;
 import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -88,8 +85,8 @@ public class UnParse {
 			System.out.println("Question5");
 			break;
 		
-		case "dcll.vbjj.mysimplexml.ShortQuestion":
-			typeQuestion="shortquestion";
+		case "dcll.vbjj.mysimplexml.ShortAnswer":
+			typeQuestion="shortanswer";
 			System.out.println("Question6");
 			break;
 		
