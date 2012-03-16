@@ -4,14 +4,22 @@ public class Answer {
 	private String text;
 	private String fraction;
 	private String feedBackText;
+	private String tolerance = "-1";
 	
 	public Answer(String text, String fraction, String feedBackText) {
 		this.text = text;
 		this.fraction = fraction;
 		this.feedBackText = feedBackText;
 	}
+	
+	public void setTolerance(String tolerance) {
+		this.tolerance = tolerance;
+	}
 
 	public String toString() {
-		return "Answer :"+text+" - "+fraction+" - "+feedBackText+"\n";
+		String res = "Answer :"+text+" - fraction="+fraction+" - ";
+		if(!tolerance.equals("-1"))
+			res += ("tolerance="+tolerance+" - ");
+		return res+feedBackText+"\n";
 	}
 }

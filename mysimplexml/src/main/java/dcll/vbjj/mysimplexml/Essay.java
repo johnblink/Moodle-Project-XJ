@@ -1,7 +1,5 @@
 package dcll.vbjj.mysimplexml;
 
-import java.util.ArrayList;
-
 public class Essay extends Question{
 	private Answer answer;
 	private String questionText;

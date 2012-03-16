@@ -32,7 +32,7 @@ public class App
 				while(ite.hasNext()) {
 					Element parcour = (Element) ite.next();
 					if(parcour.getName().equals("answer"))
-						sa.ajoutAnswer(new Answer(parcour.getChildTextTrim("text"),parcour.getAttributeValue("fraction"),parcour.getChildTextTrim("feedback")));
+						sa.ajoutAnswer(new Answer(parcour.getChildTextTrim("text"),parcour.getAttributeValue("fraction"),parcour.getChild("feedback").getChildTextTrim("text")));
 				}
 				listQuestion.add(sa);
 				break;
@@ -51,7 +51,9 @@ public class App
 				break;
 			
 			case "numerical" :
-				NumericalAnswer na = new NumericalAnswer();
+				Answer a = new Answer(e.getChild("answer").getChildText("text"),e.getChild("answer").getAttributeValue("fraction"),e.getChild("answer").getChild("feedback").getTextTrim());
+				a.setTolerance(e.getChild("answer").getChildText("tolerance"));
+				NumericalAnswer na = new NumericalAnswer(e.getChild("name").getChildText("text"),e.getChild("questiontext").getChildText("text"),e.getChild("questiontext").getAttributeValue("format"),e.getChild("image").getValue(),e.getChild("generalfeedback").getTextTrim(),e.getChild("defaultgrade").getText(),e.getChild("penalty").getTextTrim(),e.getChild("hidden").getText(),e.getChild("shuffleanswers").getText(),a);
 				listQuestion.add(na);
 				break;
 				
