@@ -52,47 +52,59 @@ public class UnParse {
 	// Write A Question
 	public void parcoursQuestions(Question q) {
 		String typeQuestion = q.getClass().getName();
-		Element question;
+		Element question = new Element("question");
+		Attribute classe;
 		
 		switch(typeQuestion){
 		case "dcll.vbjj.mysimplexml.Calculated":
-			typeQuestion="calculated";
-			question = new Element(typeQuestion);
+			/* TEST LIGN -> */System.out.println("Question calculated");
+			
 			racine.addContent(question);
-			System.out.println("Question1");
 			// Find Attribute to the object
-			Attribute classe = new Attribute("test","test");
+			classe = new Attribute("test","test");
 			question.setAttribute(classe);
 			break;
 			
 		case "dcll.vbjj.mysimplexml.Essay":
-			typeQuestion="essay";
-			System.out.println("Question2");
+			/* TEST LIGN -> */System.out.println("Question essay");
+			
+			classe = new Attribute("type","essay");
+			question.setAttribute(classe);
+			
+			Element name = new Element("name");
+			question.addContent(name);
+			Element text = new Element("text");
+			name.addContent(text);
+			text.setText(((Essay)q).getName());
+			// Put on trunk
+			racine.addContent(question);
+			// Find Attribute to the object
+			
 			break;
 			
 		case "dcll.vbjj.mysimplexml.Matching":
-			typeQuestion="matching";
-			System.out.println("Question3");
+			/* TEST LIGN -> */System.out.println("Question matching");
+			
 			break;
 		
 		case "dcll.vbjj.mysimplexml.MultipleChoice":
-			typeQuestion="multiplechoice";
-			System.out.println("Question4");
+			/* TEST LIGN -> */System.out.println("Question multiplechoice");
+			
 			break;
 		
 		case "dcll.vbjj.mysimplexml.NumericalAnswer":
-			typeQuestion="numericalanswer";
-			System.out.println("Question5");
+			/* TEST LIGN -> */System.out.println("Question numericalanswer");
+			
 			break;
 		
 		case "dcll.vbjj.mysimplexml.ShortAnswer":
-			typeQuestion="shortanswer";
-			System.out.println("Question6");
+			/* TEST LIGN -> */System.out.println("Question shortanswer");
+			
 			break;
 		
 		case "dcll.vbjj.mysimplexml.TrueFalse":
-			typeQuestion="truefalse";
-			System.out.println("Question7");
+			/* TEST LIGN -> */System.out.println("Question truefalse");
+			
 			break;
 		
 		default:
@@ -105,7 +117,6 @@ public class UnParse {
 		Iterator<?> i = listQuestion.iterator();
 		
 		while(i.hasNext()) {
-			System.out.println("Question---");
 			parcoursQuestions((Question)i.next());
 		}
 		
