@@ -4,10 +4,8 @@ import java.util.ArrayList;
 
 public class TrueFalse extends Question {
 	private ArrayList<Answer> listAnswer = new ArrayList<Answer>();
-	private String questionText;
 	private String format;
 	private String image;
-	private String generalfeedback;
 	private String defaultgrade;
 	private String penalty;
 	private String hidden;

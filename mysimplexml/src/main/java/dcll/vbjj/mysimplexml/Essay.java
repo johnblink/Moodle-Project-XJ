@@ -2,10 +2,8 @@ package dcll.vbjj.mysimplexml;
 
 public class Essay extends Question{
 	private Answer answer;
-	private String questionText;
 	private String format;
 	private String image;
-	private String generalfeedback;
 	private String defaultgrade;
 	private String penalty;
 	private String hidden;
