@@ -17,7 +17,7 @@ public class UnParse {
 	private static Element racine = new Element("quiz");
 	// Create new Document JDOM based on new trunk
 	private static Document document = new Document(racine);
-	// Element Question Main Balise
+	// Element Question Main Tag
 	private Element question;
 	// Iterator Question Number
 	private int nbQuestion;
@@ -29,16 +29,13 @@ public class UnParse {
 	}
 
 	// Save file
-	static void enregistre(String fichier)
-	{
-	   try
-	   {
+	static void enregistre(String fichier) {
+	   try {
 	      //Classic format with getPrettyFormat()
 	      XMLOutputter sortie = new XMLOutputter(Format.getPrettyFormat());
 	      //Serialization.
 	      sortie.output(document, new FileOutputStream(fichier));
-	   }
-	   catch (java.io.IOException e){}
+	   } catch (java.io.IOException e){}
 	}
 	
 	// Print File
@@ -53,6 +50,7 @@ public class UnParse {
 	   catch (java.io.IOException e){}
 	}
 	
+	
 	// Function use for NAME tag
 	private void ajouteBaliseName (String var) {
 		Element name = new Element("name");
@@ -62,6 +60,7 @@ public class UnParse {
 		name.addContent(text);
 		this.question.addContent(name);
 	}
+	
 	
 	// Function use for QUESTIONTEXT tag
 	private void ajouteBaliseQuestionText(String var) {
@@ -75,12 +74,14 @@ public class UnParse {
 		this.question.addContent(questiontext);
 	}
 	
+	
 	// Function use for IMAGE tag
 	private void ajouteBaliseImage() {
 		Element image = new Element("image");
 		
 		this.question.addContent(image);
 	}
+	
 	
 	// Function use for FEEDBACK tag
 	private void ajouteBaliseGeneralFeedback(String var) {
@@ -92,6 +93,7 @@ public class UnParse {
 		this.question.addContent(generalfeedback);
 	}
 	
+	
 	// Function use for DEFAULTGRADE, PENALTY, HIDDEN, SHUFFLEANSWERS tags
 	private void ajouteBaliseSimpleTexte(String nom, String var) {
 		Element defaultgrade = new Element(nom);
@@ -99,6 +101,7 @@ public class UnParse {
 		defaultgrade.setText(var);
 		this.question.addContent(defaultgrade);
 	}
+	
 	
 	private void ajouteBaliseAnswer(Answer a) {
 		Element answer = new Element("answer");
@@ -116,12 +119,14 @@ public class UnParse {
 		this.question.addContent(answer);
 	}
 	
+	
 	private void ajouteListeBalisesAnswer(ArrayList<Answer> l) {
 		Iterator<Answer> i = l.iterator();
 		
 		while(i.hasNext())
 			ajouteBaliseAnswer((Answer)i.next());
 	}
+	
 	
 	// Write A Question
 	private void parcoursQuestions(Question q) {
@@ -252,7 +257,7 @@ public class UnParse {
 			/* ADD BALISE SHUFFLEANSWERS */
 			ajouteBaliseSimpleTexte("shuffleanswers",((TrueFalse)q).getShuffleAnswers());
 			/* ADD BALISE ANSWER */
-			ajouteListeBalisesAnswer(((ShortAnswer)q).getListAnswer());
+			ajouteListeBalisesAnswer(((TrueFalse)q).getListAnswer());
 		
 			// Put on trunk
 			racine.addContent(this.question);
