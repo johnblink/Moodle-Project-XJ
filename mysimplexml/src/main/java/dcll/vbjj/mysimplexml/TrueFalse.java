@@ -32,4 +32,32 @@ public class TrueFalse extends Question {
 		// TODO Auto-generated method stub
 		return "\nAffichage TrueFalse\n"+"==> "+name+"\n(image="+image+" - generalfeedback="+generalfeedback+" - format="+format+" - defaultgrade="+defaultgrade+" - penalty="+penalty+" - hidden="+hidden+" - shuffleanswer="+shuffleanswer+")\n"+questionText+"\n"+listAnswer.toString()+"\n";
 	}
+	// Getter attribute : getListAnswer
+	public ArrayList<Answer> getListAnswer() {
+		return this.listAnswer;
+	}
+	// Getter attribute : format
+	public String getFormat() {
+		return this.format;
+	}
+	// Getter attribute : image
+	public String getImage() {
+		return this.image;
+	}
+	// Getter attribute : defaultgrade
+	public String getDefaultGrade() {
+		return this.defaultgrade;
+	}
+	// Getter attribute : penalty
+	public String getPenalty() {
+		return this.penalty;
+	}
+	// Getter attribute : Hidden
+	public String getHidden() {
+		return this.hidden;
+	}
+
+	public String getShuffleAnswers() {
+		return shuffleanswer;
+	}
 }

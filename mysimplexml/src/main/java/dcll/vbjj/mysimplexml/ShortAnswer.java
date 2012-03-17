@@ -34,6 +34,36 @@ public class ShortAnswer extends Question{
 		// TODO Auto-generated method stub
 		return "\nAffichage ShortAnswer\n"+"==> "+name+"\n(image="+image+" - generalfeedback="+generalfeedback+" - format="+format+" - defaultgrade="+defaultgrade+" - penalty="+penalty+" - hidden="+hidden+" - shuffleanswer="+shuffleanswers+" - usecase="+usecase+")\n"+questionText+"\n"+listAnswer.toString();
 	}
-
-
+	// Getter attribute : getListAnswer
+	public ArrayList<Answer> getListAnswer() {
+		return listAnswer;
+	}
+	// Getter attribute : format
+	public String getFormat() {
+		return format;
+	}
+	// Getter attribute : image
+	public String getImage() {
+		return image;
+	}
+	// Getter attribute : defaultgrade
+	public String getDefaultGrade() {
+		return defaultgrade;
+	}
+	// Getter attribute : penalty
+	public String getPenalty() {
+		return penalty;
+	}
+	// Getter attribute : hidden
+	public String getHidden() {
+		return hidden;
+	}
+	// Getter attribute : shuffleanswers
+	public String getShuffleAnswers() {
+		return shuffleanswers;
+	}
+	// Getter attribute : usecase
+	public String getUseCase() {
+		return usecase;
+	}
 }

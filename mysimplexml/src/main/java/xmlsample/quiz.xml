@@ -1,9 +1,113 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <quiz>
-  <question type="essay">
-    <name>
-      <text>Question ouverte</text>
-    </name>
-  </question>
+	<!--question: 1 -->
+	<question type="essay">
+		<name>
+			<text>Question ouverte</text>
+		</name>
+		<questiontext format="moodle_auto_format">
+			<text>Ecrire un programme qui affiche Hello world</text>
+		</questiontext>
+		<image />
+		<generalfeedback>
+			<text />
+		</generalfeedback>
+		<defaultGrade>1</defaultGrade>
+		<penalty>0</penalty>
+		<hidden>0</hidden>
+		<shuffleanswers>0</shuffleanswers>
+		<answer fraction="0">
+			<text />
+			<feedback>
+				<text />
+			</feedback>
+		</answer>
+	</question>
+	<!--question: 2 -->
+	<question type="numerical">
+		<name>
+			<text>HTTP 1er protocole de l'Internet</text>
+		</name>
+		<questiontext format="moodle_auto_format">
+			<text>En quelle année HTTP devient le premier protocole de l'Internet
+				?
+			</text>
+		</questiontext>
+		<image />
+		<generalfeedback>
+			<text />
+		</generalfeedback>
+		<defaultGrade>1</defaultGrade>
+		<penalty>0.1</penalty>
+		<hidden>0</hidden>
+		<shuffleanswers>0</shuffleanswers>
+		<answer fraction="100">
+			<text>1996</text>
+			<feedback>
+				<text />
+			</feedback>
+		</answer>
+	</question>
+	<!--question: 3 -->
+	<question type="shortanswer">
+		<name>
+			<text>MVC</text>
+		</name>
+		<questiontext format="moodle_auto_format">
+			<text>Que signifie MVC ?</text>
+		</questiontext>
+		<image />
+		<generalfeedback>
+			<text />
+		</generalfeedback>
+		<defaultGrade>1</defaultGrade>
+		<penalty>0.1</penalty>
+		<hidden>0</hidden>
+		<shuffleanswers>0</shuffleanswers>
+		<usecase>0</usecase>
+		<answer fraction="100">
+			<text>Model View Controller</text>
+			<feedback>
+				<text />
+			</feedback>
+		</answer>
+		<answer fraction="100">
+			<text>Modèle vue contrôleur</text>
+			<feedback>
+				<text />
+			</feedback>
+		</answer>
+	</question>
+	<!--question: 4 -->
+	<question type="shortanswer">
+		<name>
+			<text>Premier langage Orienté Objet</text>
+		</name>
+		<questiontext format="moodle_auto_format">
+			<text>Quel est le premier langage Orienté Objet ?</text>
+		</questiontext>
+		<image />
+		<generalfeedback>
+			<text />
+		</generalfeedback>
+		<defaultGrade>1</defaultGrade>
+		<penalty>0.1</penalty>
+		<hidden>0</hidden>
+		<shuffleanswers>0</shuffleanswers>
+		<usecase>0</usecase>
+		<answer fraction="100">
+			<text>Simula 66</text>
+			<feedback>
+				<text>Parfait !</text>
+			</feedback>
+		</answer>
+		<answer fraction="75">
+			<text>Simula</text>
+			<feedback>
+				<text>Oui, plus précisément Simula 66</text>
+			</feedback>
+		</answer>
+	</question>
+	<!--question: 5 -->
 </quiz>
 

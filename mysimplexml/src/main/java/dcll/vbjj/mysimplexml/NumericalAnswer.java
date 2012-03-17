@@ -27,6 +27,33 @@ public class NumericalAnswer extends Question{
 		// TODO Auto-generated method stub
 		return "\nAffichage NumericalAnswer\n"+"==> "+name+"\n(image="+image+" - generalfeedback="+generalfeedback+" - format="+format+" - defaultgrade="+defaultgrade+" - penalty="+penalty+" - hidden="+hidden+" - shuffleanswer="+shuffleanswers+")\n"+questionText+"\n"+answer.toString();
 	}
-
+	// Getter attribute : answer
+	public Answer getAnswer() {
+		return this.answer;
+	}
+	// Getter attribute : format
+	public String getFormat() {
+		return this.format;
+	}
+	// Getter attribute : image
+	public String getImage() {
+		return this.image;
+	}
+	// Getter attribute : defaultgrade
+	public String getDefaultGrade() {
+		return this.defaultgrade;
+	}
+	// Getter attribute : penalty
+	public String getPenalty() {
+		return this.penalty;
+	}
+	// Getter attribute : hidden
+	public String getHidden() {
+		return this.hidden;
+	}
+	// Getter attribute : shuffleanswers
+	public String getShuffleAnswers() {
+		return this.shuffleanswers;
+	}
 
 }

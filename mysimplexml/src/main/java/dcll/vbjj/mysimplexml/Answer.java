@@ -15,11 +15,26 @@ public class Answer {
 	public void setTolerance(String tolerance) {
 		this.tolerance = tolerance;
 	}
-
+	
 	public String toString() {
-		String res = "Answer :"+text+" - fraction="+fraction+" - ";
-		if(!tolerance.equals("-1"))
-			res += ("tolerance="+tolerance+" - ");
-		return res+feedBackText+"\n";
+		String res = "Answer :" + text + " - fraction=" + fraction + " - ";
+		if (!tolerance.equals("-1"))
+			res += ("tolerance=" + tolerance + " - ");
+		return res + feedBackText + "\n";
+	}
+	
+	// Getter attribute : text
+	public String getText() {
+		return this.text;
+	}
+	
+	// Getter attribute : fraction
+	public String getFraction() {
+		return this.fraction;
+	}
+	
+	// Getter attribute : feedBackText
+	public String getFeedbackText() {
+		return this.feedBackText;
 	}
 }
