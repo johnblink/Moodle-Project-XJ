@@ -188,7 +188,7 @@ public class UnParse {
 	}
 	// Write A Question
 	private void parcoursQuestions(Question q) {
-		switch(q.getClass().getName()){
+		switch((String)q.getClass().getName()){
 		case "dcll.vbjj.mysimplexml.Calculated":
 			/* TEST LIGN -> */System.out.println("Question calculated");
 			break;
