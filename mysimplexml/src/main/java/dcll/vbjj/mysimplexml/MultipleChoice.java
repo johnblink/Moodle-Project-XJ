@@ -20,6 +20,7 @@ public class MultipleChoice extends Question {
 	public MultipleChoice(String name, String qt, String format, String image, String image_base64, String generalfeedback, String defaultgrade, 
 			String penalty, String hidden, String shuffleanswers0, String shuffleanswers1, String single, String correctfeedback,
 			String partiallycorrectfeedback, String incorrectfeedback, String answernumbering) {
+		super();
 		this.questionText = qt;
 		this.name = name;
 		this.format = format;

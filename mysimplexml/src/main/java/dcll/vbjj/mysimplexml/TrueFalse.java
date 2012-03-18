@@ -12,6 +12,7 @@ public class TrueFalse extends Question {
 	private String shuffleanswer;
 
 	public TrueFalse(String n, String qt, String f, String image, String generalfeedback, String d, String p, String h, String s) {
+		super();
 		this.name = n;
 		this.format = f;
 		this.questionText = qt;

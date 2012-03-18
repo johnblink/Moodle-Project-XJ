@@ -13,6 +13,7 @@ public class ShortAnswer extends Question{
 	private String usecase;
 	
 	public ShortAnswer(String name, String qt, String format, String image, String generalfeedback, String defaultgrade, String penalty, String hidden, String shuffleanswers, String usecase) {
+		super();
 		this.questionText = qt;
 		this.name = name;
 		this.format = format;

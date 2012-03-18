@@ -10,6 +10,7 @@ public class Essay extends Question{
 	private String shuffleanswers;
 	
 	public Essay(String name, String qt, String format, String image, String generalfeedback, String defaultgrade, String penalty, String hidden, String shuffleanswers, Answer answer) {
+		super();
 		this.questionText = qt;
 		this.name = name;
 		this.format = format;

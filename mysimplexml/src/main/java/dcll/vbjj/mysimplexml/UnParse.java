@@ -41,16 +41,12 @@ public class UnParse {
 	// Print File
 	static void affiche()
 	{
-	   try
-	   {
+	   try {
 	      // Classic Format getPrettyFormat()
 	      XMLOutputter sortie = new XMLOutputter(Format.getPrettyFormat());
 	      sortie.output(document, System.out);
-	   }
-	   catch (java.io.IOException e){}
+	   } catch (java.io.IOException e){}
 	}
-	
-	
 	// Function use for NAME tag
 	private void ajouteBaliseName (String var) {
 		Element name = new Element("name");
@@ -60,8 +56,6 @@ public class UnParse {
 		name.addContent(text);
 		this.question.addContent(name);
 	}
-	
-	
 	// Function use for QUESTIONTEXT tag
 	private void ajouteBaliseQuestionText(String var) {
 		Element questiontext = new Element("questiontext");
@@ -73,16 +67,12 @@ public class UnParse {
 		questiontext.addContent(text);
 		this.question.addContent(questiontext);
 	}
-	
-	
 	// Function use for IMAGE tag
 	private void ajouteBaliseImage() {
 		Element image = new Element("image");
 		
 		this.question.addContent(image);
 	}
-	
-	
 	// Function use for FEEDBACK tag
 	private void ajouteBaliseGeneralFeedback(String var) {
 		Element generalfeedback = new Element("generalfeedback");
@@ -92,16 +82,13 @@ public class UnParse {
 		generalfeedback.addContent(text);
 		this.question.addContent(generalfeedback);
 	}
-	
-	
 	// Function use for DEFAULTGRADE, PENALTY, HIDDEN, SHUFFLEANSWERS tags
 	private void ajouteBaliseSimpleTexte(String nom, String var) {
 		Element defaultgrade = new Element(nom);
 		
 		defaultgrade.setText(var);
 		this.question.addContent(defaultgrade);
-	}
-	
+	}	
 	
 	private void ajouteBaliseAnswer(Answer a) {
 		Element answer = new Element("answer");
@@ -119,7 +106,6 @@ public class UnParse {
 		this.question.addContent(answer);
 	}
 	
-	
 	private void ajouteListeBalisesAnswer(ArrayList<Answer> l) {
 		Iterator<Answer> i = l.iterator();
 		
@@ -127,145 +113,105 @@ public class UnParse {
 			ajouteBaliseAnswer((Answer)i.next());
 	}
 	
+	private void ajouteBaliseQuestionEssay(Essay e) {
+		System.out.println("Question essay");								/* TEST LIGN -> */
+		Attribute classe = new Attribute("type","essay");
+		this.question.setAttribute(classe);
+		
+		ajouteBaliseName(e.getName());										/* ADD BALISE NAME */
+		ajouteBaliseQuestionText(e.getQuestionText());						/* ADD BALISE QUESTION TEXT */
+		ajouteBaliseImage();												/* ADD BALISE IMAGE */
+		ajouteBaliseGeneralFeedback(e.getGeneralFeedback());				/* ADD BALISE GENERALFEEDBACK */
+		ajouteBaliseSimpleTexte("defaultGrade",e.getDefaultGrade());		/* ADD BALISE DEFAULTGRADE */
+		ajouteBaliseSimpleTexte("penalty",e.getPenalty());					/* ADD BALISE PENALTY */
+		ajouteBaliseSimpleTexte("hidden",e.getHidden());					/* ADD BALISE HIDDEN */
+		ajouteBaliseSimpleTexte("shuffleanswers",e.getShuffleAnswers());	/* ADD BALISE SHUFFLEANSWERS */
+		ajouteBaliseAnswer(e.getAnswer());									/* ADD BALISE ANSWER */
+		// Put on trunk
+		racine.addContent(this.question);
+	}
 	
+	private void ajouteBaliseQuestionNumerical (NumericalAnswer a) {
+		System.out.println("Question numericalanswer");						/* TEST LIGN -> */
+		Attribute classe = new Attribute("type","numerical");
+		question.setAttribute(classe);
+		
+		ajouteBaliseName(a.getName());										/* ADD BALISE NAME */
+		ajouteBaliseQuestionText(a.getQuestionText());						/* ADD BALISE QUESTION TEXT */
+		ajouteBaliseImage();												/* ADD BALISE IMAGE */
+		ajouteBaliseGeneralFeedback(a.getGeneralFeedback());				/* ADD BALISE GENERALFEEDBACK */
+		ajouteBaliseSimpleTexte("defaultGrade", a.getDefaultGrade());		/* ADD BALISE DEFAULTGRADE */
+		ajouteBaliseSimpleTexte("penalty", a.getPenalty());					/* ADD BALISE PENALTY */
+		ajouteBaliseSimpleTexte("hidden", a.getHidden());					/* ADD BALISE HIDDEN */
+		ajouteBaliseSimpleTexte("shuffleanswers", a.getShuffleAnswers());	/* ADD BALISE SHUFFLEANSWERS */
+		ajouteBaliseAnswer(a.getAnswer());									/* ADD BALISE ANSWER */
+		// Put on trunk
+		racine.addContent(this.question);
+	}
+	
+	private void ajouteBaliseQuestionShortAnswer(ShortAnswer sa) {
+
+		System.out.println("Question shortanswer");							/* TEST LIGN -> */
+		Attribute classe = new Attribute("type","shortanswer");
+		question.setAttribute(classe);
+		
+		ajouteBaliseName(sa.getName());										/* ADD BALISE NAME */
+		ajouteBaliseQuestionText(sa.getQuestionText());						/* ADD BALISE QUESTION TEXT */
+		ajouteBaliseImage();												/* ADD BALISE IMAGE */
+		ajouteBaliseGeneralFeedback(sa.getGeneralFeedback());				/* ADD BALISE GENERALFEEDBACK */
+		ajouteBaliseSimpleTexte("defaultGrade", sa.getDefaultGrade());		/* ADD BALISE DEFAULTGRADE */
+		ajouteBaliseSimpleTexte("penalty", sa.getPenalty());				/* ADD BALISE PENALTY */
+		ajouteBaliseSimpleTexte("hidden", sa.getHidden());					/* ADD BALISE HIDDEN */
+		ajouteBaliseSimpleTexte("shuffleanswers", sa.getShuffleAnswers());	/* ADD BALISE SHUFFLEANSWERS */
+		ajouteBaliseSimpleTexte("usecase", sa.getUseCase());				/* ADD BALISE USECASE */
+		ajouteListeBalisesAnswer(sa.getListAnswer());						/* ADD BALISE ANSWER */
+		// Put on trunk
+		racine.addContent(this.question);
+	}
+	
+	private void ajouteBaliseQuestionTrueFalse(TrueFalse tf) {
+		System.out.println("Question truefalse");							/* TEST LIGN -> */
+		Attribute classe = new Attribute("type","truefalse");
+		question.setAttribute(classe);
+		
+		ajouteBaliseName(tf.getName());										/* ADD BALISE NAME */
+		ajouteBaliseQuestionText(tf.getQuestionText());						/* ADD BALISE QUESTION TEXT */
+		ajouteBaliseImage();												/* ADD BALISE IMAGE */
+		ajouteBaliseGeneralFeedback(tf.getGeneralFeedback());				/* ADD BALISE GENERALFEEDBACK */
+		ajouteBaliseSimpleTexte("defaultGrade", tf.getDefaultGrade());		/* ADD BALISE DEFAULTGRADE */
+		ajouteBaliseSimpleTexte("penalty", tf.getPenalty());				/* ADD BALISE PENALTY */
+		ajouteBaliseSimpleTexte("hidden", tf.getHidden());					/* ADD BALISE HIDDEN */
+		ajouteBaliseSimpleTexte("shuffleanswers", tf.getShuffleAnswers());	/* ADD BALISE SHUFFLEANSWERS */
+		ajouteListeBalisesAnswer(tf.getListAnswer());						/* ADD BALISE ANSWER */
+		// Put on trunk
+		racine.addContent(this.question);
+	}
 	// Write A Question
 	private void parcoursQuestions(Question q) {
-		Attribute classe;
-		
 		switch(q.getClass().getName()){
 		case "dcll.vbjj.mysimplexml.Calculated":
 			/* TEST LIGN -> */System.out.println("Question calculated");
-			
 			break;
-			
 		case "dcll.vbjj.mysimplexml.Essay":
-			/* TEST LIGN -> */System.out.println("Question essay");
-			classe = new Attribute("type","essay");
-			this.question.setAttribute(classe);
-			
-			/* ADD BALISE NAME */
-			ajouteBaliseName(((Essay)q).getName());
-			/* ADD BALISE QUESTION TEXT */
-			ajouteBaliseQuestionText(((Essay)q).getQuestionText());
-			/* ADD BALISE IMAGE */
-			ajouteBaliseImage();
-			/* ADD BALISE GENERALFEEDBACK */
-			ajouteBaliseGeneralFeedback(((Essay)q).getGeneralFeedback());
-			/* ADD BALISE DEFAULTGRADE */
-			ajouteBaliseSimpleTexte("defaultGrade",((Essay)q).getDefaultGrade());
-			/* ADD BALISE PENALTY */
-			ajouteBaliseSimpleTexte("penalty",((Essay)q).getPenalty());
-			/* ADD BALISE HIDDEN */
-			ajouteBaliseSimpleTexte("hidden",((Essay)q).getHidden());
-			/* ADD BALISE SHUFFLEANSWERS */
-			ajouteBaliseSimpleTexte("shuffleanswers",((Essay)q).getShuffleAnswers());
-			/* ADD BALISE ANSWER */
-			ajouteBaliseAnswer(((Essay)q).getAnswer());
-		
-			// Put on trunk
-			racine.addContent(this.question);
+			ajouteBaliseQuestionEssay((Essay)q);
 			break;
-			
 		case "dcll.vbjj.mysimplexml.Matching":
 			/* TEST LIGN -> */System.out.println("Question matching");
-			
 			break;
-		
 		case "dcll.vbjj.mysimplexml.MultipleChoice":
 			/* TEST LIGN -> */System.out.println("Question multiplechoice");
-			
 			break;
-		
 		case "dcll.vbjj.mysimplexml.NumericalAnswer":
-			/* TEST LIGN -> */System.out.println("Question numericalanswer");
-			classe = new Attribute("type","numerical");
-			question.setAttribute(classe);
-			
-			/* ADD BALISE NAME */
-			ajouteBaliseName(((NumericalAnswer)q).getName());
-			/* ADD BALISE QUESTION TEXT */
-			ajouteBaliseQuestionText(((NumericalAnswer)q).getQuestionText());
-			/* ADD BALISE IMAGE */
-			ajouteBaliseImage();
-			/* ADD BALISE GENERALFEEDBACK */
-			ajouteBaliseGeneralFeedback(((NumericalAnswer)q).getGeneralFeedback());
-			/* ADD BALISE DEFAULTGRADE */
-			ajouteBaliseSimpleTexte("defaultGrade",((NumericalAnswer)q).getDefaultGrade());
-			/* ADD BALISE PENALTY */
-			ajouteBaliseSimpleTexte("penalty",((NumericalAnswer)q).getPenalty());
-			/* ADD BALISE HIDDEN */
-			ajouteBaliseSimpleTexte("hidden",((NumericalAnswer)q).getHidden());
-			/* ADD BALISE SHUFFLEANSWERS */
-			ajouteBaliseSimpleTexte("shuffleanswers",((NumericalAnswer)q).getShuffleAnswers());
-			/* ADD BALISE ANSWER */
-			ajouteBaliseAnswer(((NumericalAnswer)q).getAnswer());
-		
-			// Put on trunk
-			racine.addContent(this.question);
-			
+			ajouteBaliseQuestionNumerical((NumericalAnswer)q);
 			break;
-		
 		case "dcll.vbjj.mysimplexml.ShortAnswer":
-			/* TEST LIGN -> */System.out.println("Question shortanswer");
-			classe = new Attribute("type","shortanswer");
-			question.setAttribute(classe);
-			
-			/* ADD BALISE NAME */
-			ajouteBaliseName(((ShortAnswer)q).getName());
-			/* ADD BALISE QUESTION TEXT */
-			ajouteBaliseQuestionText(((ShortAnswer)q).getQuestionText());
-			/* ADD BALISE IMAGE */
-			ajouteBaliseImage();
-			/* ADD BALISE GENERALFEEDBACK */
-			ajouteBaliseGeneralFeedback(((ShortAnswer)q).getGeneralFeedback());
-			/* ADD BALISE DEFAULTGRADE */
-			ajouteBaliseSimpleTexte("defaultGrade",((ShortAnswer)q).getDefaultGrade());
-			/* ADD BALISE PENALTY */
-			ajouteBaliseSimpleTexte("penalty",((ShortAnswer)q).getPenalty());
-			/* ADD BALISE HIDDEN */
-			ajouteBaliseSimpleTexte("hidden",((ShortAnswer)q).getHidden());
-			/* ADD BALISE SHUFFLEANSWERS */
-			ajouteBaliseSimpleTexte("shuffleanswers",((ShortAnswer)q).getShuffleAnswers());
-			/* ADD BALISE USECASE */
-			ajouteBaliseSimpleTexte("usecase",((ShortAnswer)q).getUseCase());
-			/* ADD BALISE ANSWER */
-			ajouteListeBalisesAnswer(((ShortAnswer)q).getListAnswer());
-		
-			// Put on trunk
-			racine.addContent(this.question);
+			ajouteBaliseQuestionShortAnswer((ShortAnswer)q);
 			break;
-		
 		case "dcll.vbjj.mysimplexml.TrueFalse":
-			/* TEST LIGN -> */System.out.println("Question truefalse");
-			classe = new Attribute("type","truefalse");
-			question.setAttribute(classe);
-			
-			/* ADD BALISE NAME */
-			ajouteBaliseName(((TrueFalse)q).getName());
-			/* ADD BALISE QUESTION TEXT */
-			ajouteBaliseQuestionText(((TrueFalse)q).getQuestionText());
-			/* ADD BALISE IMAGE */
-			ajouteBaliseImage();
-			/* ADD BALISE GENERALFEEDBACK */
-			ajouteBaliseGeneralFeedback(((TrueFalse)q).getGeneralFeedback());
-			/* ADD BALISE DEFAULTGRADE */
-			ajouteBaliseSimpleTexte("defaultGrade",((TrueFalse)q).getDefaultGrade());
-			/* ADD BALISE PENALTY */
-			ajouteBaliseSimpleTexte("penalty",((TrueFalse)q).getPenalty());
-			/* ADD BALISE HIDDEN */
-			ajouteBaliseSimpleTexte("hidden",((TrueFalse)q).getHidden());
-			/* ADD BALISE SHUFFLEANSWERS */
-			ajouteBaliseSimpleTexte("shuffleanswers",((TrueFalse)q).getShuffleAnswers());
-			/* ADD BALISE ANSWER */
-			ajouteListeBalisesAnswer(((TrueFalse)q).getListAnswer());
-		
-			// Put on trunk
-			racine.addContent(this.question);
+			ajouteBaliseQuestionTrueFalse((TrueFalse)q);
 			break;
-		
 		default:
 		}
-		
 	}
 	
 	public void run (ArrayList<Question> lq){
