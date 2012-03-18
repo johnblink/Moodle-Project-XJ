@@ -18,7 +18,7 @@ public class App
 	}
 	
 	private void parser(Element e) {
-		switch(e.getAttributeValue("type")) {
+		switch((String)e.getAttributeValue("type")) {
 			case "truefalse" :
 				TrueFalse tf = new TrueFalse(e.getChild("name").getChildText("text"),e.getChild("questiontext").getChildText("text"),e.getChild("questiontext").getAttributeValue("format"),e.getChild("image").getValue(),e.getChild("generalfeedback").getTextTrim(),e.getChild("defaultgrade").getText(),e.getChild("penalty").getTextTrim(),e.getChild("hidden").getText(),e.getChild("shuffleanswers").getText());
 				Iterator<?> ite = e.getChildren("answer").iterator();
