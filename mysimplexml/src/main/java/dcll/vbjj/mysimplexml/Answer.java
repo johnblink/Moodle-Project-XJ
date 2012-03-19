@@ -23,17 +23,17 @@ public class Answer {
 		return res + feedBackText + "\n";
 	}
 	
-	// Getter attribute : text
+	// Getter attribute : TEXT
 	public String getText() {
 		return this.text;
 	}
 	
-	// Getter attribute : fraction
+	// Getter attribute : FRACTION
 	public String getFraction() {
 		return this.fraction;
 	}
 	
-	// Getter attribute : feedBackText
+	// Getter attribute : FEEDBACKTEXT
 	public String getFeedbackText() {
 		return this.feedBackText;
 	}

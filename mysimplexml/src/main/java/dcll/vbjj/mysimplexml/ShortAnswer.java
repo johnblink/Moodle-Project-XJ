@@ -35,35 +35,35 @@ public class ShortAnswer extends Question{
 		// TODO Auto-generated method stub
 		return "\nAffichage ShortAnswer\n"+"==> "+name+"\n(image="+image+" - generalfeedback="+generalfeedback+" - format="+format+" - defaultgrade="+defaultgrade+" - penalty="+penalty+" - hidden="+hidden+" - shuffleanswer="+shuffleanswers+" - usecase="+usecase+")\n"+questionText+"\n"+listAnswer.toString();
 	}
-	// Getter attribute : getListAnswer
+	// Getter attribute : GETLISTANSWER
 	public ArrayList<Answer> getListAnswer() {
 		return listAnswer;
 	}
-	// Getter attribute : format
+	// Getter attribute : FORMAT
 	public String getFormat() {
 		return format;
 	}
-	// Getter attribute : image
+	// Getter attribute : IMAGE
 	public String getImage() {
 		return image;
 	}
-	// Getter attribute : defaultgrade
+	// Getter attribute : DEFAULTGRADE
 	public String getDefaultGrade() {
 		return defaultgrade;
 	}
-	// Getter attribute : penalty
+	// Getter attribute : PENALTY
 	public String getPenalty() {
 		return penalty;
 	}
-	// Getter attribute : hidden
+	// Getter attribute : HIDDEN
 	public String getHidden() {
 		return hidden;
 	}
-	// Getter attribute : shuffleanswers
+	// Getter attribute : SHUFFLEANSWERS
 	public String getShuffleAnswers() {
 		return shuffleanswers;
 	}
-	// Getter attribute : usecase
+	// Getter attribute : USECASE
 	public String getUseCase() {
 		return usecase;
 	}

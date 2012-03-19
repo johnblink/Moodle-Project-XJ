@@ -6,17 +6,17 @@ public abstract class Question {
 	protected String generalfeedback;
 	public abstract String toString();
 	
-	// Getter attribute : name
+	// Getter attribute : NAME
 	public String getName(){
 		return this.name;
 	}
 	
-	// Getter attribute : questionText
+	// Getter attribute : QUESTIONTEXT
 	public String getQuestionText(){
 		return this.questionText;
 	}
 	
-	// Getter attribute : generalfeedback
+	// Getter attribute : GENERALFEEDBACK
 	public String getGeneralFeedback(){
 		return this.generalfeedback;
 	}

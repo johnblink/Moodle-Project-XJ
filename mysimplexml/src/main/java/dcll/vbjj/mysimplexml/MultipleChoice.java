@@ -16,10 +16,13 @@ public class MultipleChoice extends Question {
 	private String partiallycorrectfeedback;
 	private String incorrectfeedback;
 	private String answernumbering;
-	
-	public MultipleChoice(String name, String qt, String format, String image, String image_base64, String generalfeedback, String defaultgrade, 
-			String penalty, String hidden, String shuffleanswers0, String shuffleanswers1, String single, String correctfeedback,
-			String partiallycorrectfeedback, String incorrectfeedback, String answernumbering) {
+
+	public MultipleChoice(String name, String qt, String format, String image,
+			String image_base64, String generalfeedback, String defaultgrade,
+			String penalty, String hidden, String shuffleanswers0,
+			String shuffleanswers1, String single, String correctfeedback,
+			String partiallycorrectfeedback, String incorrectfeedback,
+			String answernumbering) {
 		super();
 		this.questionText = qt;
 		this.name = name;
@@ -38,65 +41,88 @@ public class MultipleChoice extends Question {
 		this.incorrectfeedback = incorrectfeedback;
 		this.answernumbering = answernumbering;
 	}
-	
+
 	public void ajoutAnswer(Answer a) {
 		listAnswer.add(a);
 	}
-	
+
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
-		return "\nAffichage MultipleChoice\n"+"==> "+name+"\n(image="+image+" - image_base64="+" - generalfeedback="+generalfeedback+" - format="+format+" - defaultgrade="+defaultgrade+" - penalty="+penalty+" - hidden="+hidden+" - shuffleanswer="+shuffleanswers+")\n"+questionText+"\n"+listAnswer.toString();
+		return "\nAffichage MultipleChoice\n" + "==> " + name + "\n(image="
+				+ image + " - image_base64=" + " - generalfeedback="
+				+ generalfeedback + " - format=" + format + " - defaultgrade="
+				+ defaultgrade + " - penalty=" + penalty + " - hidden="
+				+ hidden + " - shuffleanswer=" + shuffleanswers + ")\n"
+				+ questionText + "\n" + listAnswer.toString();
 	}
-	// Getter attribute : getListAnswer
+
+	// Getter attribute : GETLISTANSWER
 	public ArrayList<Answer> getListAnswer() {
 		return this.listAnswer;
 	}
-	// Getter attribute : format
+
+	// Getter attribute : FORMAT
 	public String getFormat() {
 		return this.format;
 	}
-	// Getter attribute : image
+
+	// Getter attribute : IMAGE
 	public String getImage() {
 		return this.image;
 	}
-	// Getter attribute : getImage_base64
+
+	// Getter attribute : GETIMAGE_BASE64
 	public String getImage_base64() {
 		return this.image_base64;
 	}
-	// Getter attribute : defaultgrade
+
+	// Getter attribute : DEFAULTGRADE
 	public String getDefaultGrade() {
 		return this.defaultgrade;
 	}
-	// Getter attribute : penalty
+
+	// Getter attribute : PENALTY
 	public String getPenalty() {
 		return this.penalty;
 	}
-	// Getter attribute : hidden
+
+	// Getter attribute : HIDDEN
 	public String getHidden() {
 		return this.hidden;
 	}
-	// Getter attribute : shuffleanswers
-	public String[] getShuffleAnswers() {
-		return this.shuffleanswers;
+
+	// Getter attribute : SHUFFLEANSWERS1
+	public String getShuffleAnswers1() {
+		return this.shuffleanswers[0];
 	}
-	// Getter attribute : single
+
+	// Getter attribute : SHUFFLEANSWER2
+	public String getShuffleAnswers2() {
+		return this.shuffleanswers[1];
+	}
+
+	// Getter attribute : SINGLE
 	public String getSingle() {
 		return this.single;
 	}
-	// Getter attribute : correctfeedback
+
+	// Getter attribute : CORRECTFEEDBACK
 	public String getCorrectFeedback() {
 		return this.correctfeedback;
 	}
-	// Getter attribute : partiallycorrectfeedback
+
+	// Getter attribute : PARTIALLYCORRECTFEEDBACK
 	public String getPartiallyCorrectFeedback() {
 		return this.partiallycorrectfeedback;
 	}
-	// Getter attribute : incorrectfeedback
+
+	// Getter attribute : FEEDBACK
 	public String getIncorrectFeedback() {
 		return this.incorrectfeedback;
 	}
-	// Getter attribute : answernumbering
+
+	// Getter attribute : ANSWERNUMBERING
 	public String getAnswerNumbering() {
 		return this.answernumbering;
 	}
