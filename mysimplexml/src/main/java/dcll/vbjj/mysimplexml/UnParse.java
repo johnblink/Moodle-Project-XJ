@@ -104,10 +104,40 @@ public class UnParse {
 	}
 	// Add Tags in SubQuestions List
 	private void ajouteBaliseSubQuestion( ArrayList<SubQuestion> l) {
-		Iterator<SubQuestion> i = l.iterator();
+		Element subquestion, text, answer;
 		
-		//while(i.hasNext())
-		//	ajouteBaliseAnswer((Answer)i.next());
+		Iterator<SubQuestion> i = l.iterator();
+		while(i.hasNext()) {
+			subquestion = new Element("subquestion");
+			text = new Element("text");
+			text.setText(i.next().getText());
+			subquestion.addContent(text);
+			answer = new Element("answer");
+			text = new Element("text");
+			text.setText(i.next().getAnswerText());
+			answer.addContent(text);
+			subquestion.addContent(answer);
+			this.question.addContent(subquestion);
+		}
+	}
+	
+	// Add Tag Question Calculated
+	private void ajouteBaliseQuestionCalculated(Calculated d) {
+		System.out.println("Question calculated");/* TEST LIGN -> */
+		Attribute classe = new Attribute("type","calculated");
+		this.question.setAttribute(classe);
+		
+		ajouteBaliseSimpleAvecTexte("name","",d.getName());/* ADD TAG NAME */
+		ajouteBaliseSimpleAvecTexte("questiontext", "moodle_auto_format", d.getQuestionText());/* ADD TAG QUESTION TEXT */
+		ajouteBaliseImage("image", "");/* ADD TAG IMAGE */
+		ajouteBaliseSimpleAvecTexte("generalfeedback", "", d.getGeneralFeedback());/* ADD TAG GENERALFEEDBACK */
+		ajouteBaliseSimple("defaultGrade", d.getDefaultGrade());/* ADD TAG DEFAULTGRADE */
+		ajouteBaliseSimple("penalty", d.getPenalty());/* ADD TAG PENALTY */
+		ajouteBaliseSimple("hidden", d.getHidden());/* ADD TAG HIDDEN */
+		ajouteBaliseAnswer(d.getAnswer());/* ADD TAG SHUFFLEANSWERS */
+		
+		// Put on trunk
+		racine.addContent(this.question);
 	}
 	// Add Tag Question Essay
 	private void ajouteBaliseQuestionEssay(Essay e) {
@@ -228,11 +258,12 @@ public class UnParse {
 		racine.addContent(this.question);
 	}
 	
+	
 	// Write A Question
 	private void parcoursQuestions(Question q) {
 		switch((String)q.getClass().getName()){
 		case "dcll.vbjj.mysimplexml.Calculated":
-			/* TEST LIGN -> */System.out.println("Question calculated");
+			ajouteBaliseQuestionCalculated((Calculated) q);
 			break;
 		case "dcll.vbjj.mysimplexml.Essay":
 			ajouteBaliseQuestionEssay((Essay) q);
@@ -260,7 +291,6 @@ public class UnParse {
 		Comment comment;
 		
 		Iterator<Question> i = lq.iterator();
-		
 		while(i.hasNext()) {
 			// Every iteration create a new tag question
 			this.question = new Element("question");
@@ -270,7 +300,6 @@ public class UnParse {
 			
 			parcoursQuestions((Question)i.next());
 		}
-		
 		enregistre("src/main/java/xmlsample/quiz.xml");
 	}
 }
