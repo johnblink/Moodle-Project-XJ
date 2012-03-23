@@ -1,5 +1,10 @@
 package dcll.vbjj.mysimplexml;
 
+/**
+ * 
+ * @author Ben
+ *
+ */
 public class SubQuestion {
 	private String text;
 	private String answerText;

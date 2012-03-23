@@ -1,7 +1,7 @@
 package dcll.vbjj.mysimplexml;
 
 import dcll.vbjj.mysimplexml.data.CalculatedData;
-import dcll.vbjj.mysimplexml.data.Dataset_definitions;
+import dcll.vbjj.mysimplexml.data.DatasetDefinitions;
 
 public class Calculated extends Question {
 	private String defaultgrade;
@@ -10,7 +10,7 @@ public class Calculated extends Question {
 	private String shuffleanswers;
 	private Answer answer;
 	private CalculatedData unit;
-	private Dataset_definitions dataDef;
+	private DatasetDefinitions dataDef;
 
 	public Calculated() {
 		super();
@@ -54,7 +54,7 @@ public class Calculated extends Question {
 	}
 
 	// Getter attribute : DATADEF
-	public Dataset_definitions getDataDef() {
+	public DatasetDefinitions getDataDef() {
 		return this.dataDef;
 	}
 

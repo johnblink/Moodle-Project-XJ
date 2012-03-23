@@ -1,7 +1,11 @@
 package dcll.vbjj.mysimplexml;
 
 import java.util.ArrayList;
-
+/**
+ * 
+ * @author Ben
+ *
+ */
 public class TrueFalse extends Question {
 	private ArrayList<Answer> listAnswer = new ArrayList<Answer>();
 	private String format;
