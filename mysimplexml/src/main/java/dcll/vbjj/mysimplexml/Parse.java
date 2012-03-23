@@ -8,14 +8,33 @@ import java.util.logging.Logger;
 import org.jdom.Element;
 import org.jdom.input.SAXBuilder;
 
+/**
+ * Parser.
+ * 
+ * @author Jer
+ * 
+ */
 public class Parse {
+	/**
+	 * List of question extracted from the xml document.
+	 */
 	private ArrayList<Question> listQuestion = new ArrayList<Question>();
 
-	public ArrayList<Question> getQuestions() {
+	/**
+	 * Getter on listQuestion.
+	 * 
+	 * @return ArrayList<Question>
+	 */
+	public final ArrayList<Question> getQuestions() {
 		return listQuestion;
 	}
 
-	private void parser(Element e) {
+/**
+ * Add a question to the list after the element extraction.
+ * @param e
+ */
+	private void parser(final Element e) {
+		// Extract the information according to the question's type
 		switch ((String) e.getAttributeValue("type")) {
 		case "truefalse":
 			TrueFalse tf = new TrueFalse(e.getChild("name")
@@ -29,10 +48,11 @@ public class Parse {
 			Iterator<?> ite = e.getChildren("answer").iterator();
 			while (ite.hasNext()) {
 				Element parcour = (Element) ite.next();
-				if (parcour.getName().equals("answer"))
+				if (parcour.getName().equals("answer")) {
 					tf.ajoutAnswer(new Answer(parcour.getChildText("text"),
 							parcour.getAttributeValue("fraction"), parcour
 									.getChild("feedback").getTextTrim()));
+				}
 			}
 			listQuestion.add(tf);
 			break;
@@ -50,11 +70,12 @@ public class Parse {
 			ite = e.getChildren("answer").iterator();
 			while (ite.hasNext()) {
 				Element parcour = (Element) ite.next();
-				if (parcour.getName().equals("answer"))
+				if (parcour.getName().equals("answer")) {
 					sa.ajoutAnswer(new Answer(parcour.getChildTextTrim("text"),
 							parcour.getAttributeValue("fraction"), parcour
 									.getChild("feedback").getChildTextTrim(
 											"text")));
+				}
 			}
 			listQuestion.add(sa);
 			break;
@@ -72,10 +93,6 @@ public class Parse {
 							e.getChild("answer").getChild("feedback")
 									.getTextTrim()));
 			listQuestion.add(es);
-			break;
-
-		case "multichoice":
-
 			break;
 
 		case "numerical":
@@ -100,27 +117,34 @@ public class Parse {
 		}
 	}
 
-	public void xml2Java(String file) {
+	/**
+	 * Open the file and treat each element.
+	 * 
+	 * @param file
+	 */
+	public final void xml2Java(final String file) {
 		Element racine = null;
 		SAXBuilder sxb = new SAXBuilder();
 
 		try {
 			File f = new File(file);
-			if (!f.exists())
+			if (!f.exists()) {
 				System.out.println("Fichier introuvable!");
+			}
 			racine = sxb.build(file).getRootElement();
 		} catch (Exception e) {
 		}
 
 		Iterator<?> i = racine.getChildren("question").iterator();
-		while (i.hasNext())
+		while (i.hasNext()) {
 			parser((Element) i.next());
+		}
 	}
 
-	public void affiche() {
+	/**
+	 * Show the list of questions.
+	 */
+	public final void affiche() {
 		System.out.println(listQuestion.toString());
-	}
-
-	public Parse() {
 	}
 }
