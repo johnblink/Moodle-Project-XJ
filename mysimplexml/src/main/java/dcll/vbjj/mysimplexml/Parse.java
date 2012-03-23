@@ -8,26 +8,33 @@ import java.util.logging.Logger;
 import org.jdom.Element;
 import org.jdom.input.SAXBuilder;
 
-public class Parse {
 /**
- * Variable contenant la liste des questions extraites du document xml.
+ * Parser.
+ * 
+ * @author Jer
+ * 
  */
+public class Parse {
+	/**
+	 * Variable contenant la liste des questions extraites du document xml.
+	 */
 	private ArrayList<Question> listQuestion = new ArrayList<Question>();
 
-/**
- * Getter sur l'attribut listQuestion.
- * @return ArrayList<Question>
- */
-	public ArrayList<Question> getQuestions() {
+	/**
+	 * Getter sur l'attribut listQuestion.
+	 * 
+	 * @return ArrayList<Question>
+	 */
+	public final ArrayList<Question> getQuestions() {
 		return listQuestion;
 	}
 
 /**
- * Ajoute une question a la liste apres extraction d'un element
- * @param Element e
+ * Ajoute une question a la liste apres extraction d'un element.
+ * @param e
  */
-	private void parser(Element e) {
-		//Extraction des informations selon le type de question
+	private void parser(final Element e) {
+		// Extraction des informations selon le type de question
 		switch ((String) e.getAttributeValue("type")) {
 		case "truefalse":
 			TrueFalse tf = new TrueFalse(e.getChild("name")
@@ -41,10 +48,11 @@ public class Parse {
 			Iterator<?> ite = e.getChildren("answer").iterator();
 			while (ite.hasNext()) {
 				Element parcour = (Element) ite.next();
-				if (parcour.getName().equals("answer"))
+				if (parcour.getName().equals("answer")) {
 					tf.ajoutAnswer(new Answer(parcour.getChildText("text"),
 							parcour.getAttributeValue("fraction"), parcour
 									.getChild("feedback").getTextTrim()));
+				}
 			}
 			listQuestion.add(tf);
 			break;
@@ -62,11 +70,12 @@ public class Parse {
 			ite = e.getChildren("answer").iterator();
 			while (ite.hasNext()) {
 				Element parcour = (Element) ite.next();
-				if (parcour.getName().equals("answer"))
+				if (parcour.getName().equals("answer")) {
 					sa.ajoutAnswer(new Answer(parcour.getChildTextTrim("text"),
 							parcour.getAttributeValue("fraction"), parcour
 									.getChild("feedback").getChildTextTrim(
 											"text")));
+				}
 			}
 			listQuestion.add(sa);
 			break;
@@ -107,32 +116,35 @@ public class Parse {
 			logger.info(e.getAttributeValue("type"));
 		}
 	}
-	
-/**
- * Ouverture et parcours des elements du fichier passe en parametre
- * @param file
- */
-	public void xml2Java(String file) {
+
+	/**
+	 * Ouverture et parcours des elements du fichier passe en parametre.
+	 * 
+	 * @param file
+	 */
+	public final void xml2Java(final String file) {
 		Element racine = null;
 		SAXBuilder sxb = new SAXBuilder();
 
 		try {
 			File f = new File(file);
-			if (!f.exists())
+			if (!f.exists()) {
 				System.out.println("Fichier introuvable!");
+			}
 			racine = sxb.build(file).getRootElement();
 		} catch (Exception e) {
 		}
 
 		Iterator<?> i = racine.getChildren("question").iterator();
-		while (i.hasNext())
+		while (i.hasNext()) {
 			parser((Element) i.next());
+		}
 	}
 
-/**
- * Affiche la liste de question
- */
-	public void affiche() {
+	/**
+	 * Affiche la liste de question.
+	 */
+	public final void affiche() {
 		System.out.println(listQuestion.toString());
 	}
 }
