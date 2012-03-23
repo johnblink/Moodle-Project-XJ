@@ -16,12 +16,12 @@ import org.jdom.input.SAXBuilder;
  */
 public class Parse {
 	/**
-	 * Variable contenant la liste des questions extraites du document xml.
+	 * List of question extracted from the xml document.
 	 */
 	private ArrayList<Question> listQuestion = new ArrayList<Question>();
 
 	/**
-	 * Getter sur l'attribut listQuestion.
+	 * Getter on listQuestion.
 	 * 
 	 * @return ArrayList<Question>
 	 */
@@ -30,11 +30,11 @@ public class Parse {
 	}
 
 /**
- * Ajoute une question a la liste apres extraction d'un element.
+ * Add a question to the list after the element extraction.
  * @param e
  */
 	private void parser(final Element e) {
-		// Extraction des informations selon le type de question
+		// Extract the information according to the question's type
 		switch ((String) e.getAttributeValue("type")) {
 		case "truefalse":
 			TrueFalse tf = new TrueFalse(e.getChild("name")
@@ -118,7 +118,7 @@ public class Parse {
 	}
 
 	/**
-	 * Ouverture et parcours des elements du fichier passe en parametre.
+	 * Open the file and treat each element.
 	 * 
 	 * @param file
 	 */
@@ -142,7 +142,7 @@ public class Parse {
 	}
 
 	/**
-	 * Affiche la liste de question.
+	 * Show the list of questions.
 	 */
 	public final void affiche() {
 		System.out.println(listQuestion.toString());
