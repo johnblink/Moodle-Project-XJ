@@ -3,13 +3,12 @@ package dcll.vbjj.mysimplexml;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
 import java.util.logging.Logger;
 
 import org.jdom.Element;
 import org.jdom.input.SAXBuilder;
 
-public class App {
+public class Parse {
 	private ArrayList<Question> listQuestion = new ArrayList<Question>();
 
 	public ArrayList<Question> getQuestions() {
@@ -122,6 +121,6 @@ public class App {
 		System.out.println(listQuestion.toString());
 	}
 
-	public App() {
+	public Parse() {
 	}
 }
