@@ -9,13 +9,25 @@ import org.jdom.Element;
 import org.jdom.input.SAXBuilder;
 
 public class Parse {
+/**
+ * Variable contenant la liste des questions extraites du document xml.
+ */
 	private ArrayList<Question> listQuestion = new ArrayList<Question>();
 
+/**
+ * Getter sur l'attribut listQuestion.
+ * @return ArrayList<Question>
+ */
 	public ArrayList<Question> getQuestions() {
 		return listQuestion;
 	}
 
+/**
+ * Ajoute une question a la liste apres extraction d'un element
+ * @param Element e
+ */
 	private void parser(Element e) {
+		//Extraction des informations selon le type de question
 		switch ((String) e.getAttributeValue("type")) {
 		case "truefalse":
 			TrueFalse tf = new TrueFalse(e.getChild("name")
@@ -74,10 +86,6 @@ public class Parse {
 			listQuestion.add(es);
 			break;
 
-		case "multichoice":
-
-			break;
-
 		case "numerical":
 			Answer a = new Answer(e.getChild("answer").getChildText("text"), e
 					.getChild("answer").getAttributeValue("fraction"), e
@@ -99,7 +107,11 @@ public class Parse {
 			logger.info(e.getAttributeValue("type"));
 		}
 	}
-
+	
+/**
+ * Ouverture et parcours des elements du fichier passe en parametre
+ * @param file
+ */
 	public void xml2Java(String file) {
 		Element racine = null;
 		SAXBuilder sxb = new SAXBuilder();
@@ -117,10 +129,10 @@ public class Parse {
 			parser((Element) i.next());
 	}
 
+/**
+ * Affiche la liste de question
+ */
 	public void affiche() {
 		System.out.println(listQuestion.toString());
-	}
-
-	public Parse() {
 	}
 }
