@@ -14,58 +14,59 @@ import org.jdom.output.XMLOutputter;
 /**
  * This class create a new XML doc with the informations contained in the
  * Object.
- * 
+ *
  * @author Ben
- * 
+ *
  */
 public class UnParse {
-	/**
-	 * XML Trunk = quiz Element RACINE, the main tag of the XML Doc.
-	 */
+/**
+ * XML Trunk = quiz Element RACINE, the main tag of the XML Doc.
+ *
+ */
 	private static Element racine = new Element("quiz");
-	/**
-	 * Create new Document JDOM based on new trunk.
-	 */
+/**
+ * Create new Document JDOM based on new trunk.
+ */
 	private static Document document = new Document(racine);
-	/**
-	 * Element Question Main Tag.
-	 */
+/**
+ * Element Question Main Tag.
+ */
 	private Element question;
-	/**
-	 * Iterator Question Number Iterator number of question.
-	 */
+/**
+ * Iterator Question Number Iterator number of question.
+ */
 	private int nbQuestion;
 
-	/**
-	 * Constructor. init nbQuestion a 1.
-	 */
+/**
+ * Constructor. init nbQuestion a 1.
+ */
 	public UnParse() {
 		this.nbQuestion = 1;
 	}
 
-	/**
-	 * Save tags XML in the file FICHIER.
-	 * 
-	 * @param fichier
-	 */
-	static void enregistre(String fichier) {
+/**
+ * Save tags XML in the file FICHIER.
+ *
+ * @param fichier l'emplacement du fichier XML
+ */
+	static void enregistre(final String fichier) {
 		try {
-			// Classic format with getPrettyFormat()
+// Classic format with getPrettyFormat()
 			XMLOutputter sortie;
 			sortie = new XMLOutputter(Format.getPrettyFormat());
-			// Serialization.
+// Serialization.
 			sortie.output(document, new FileOutputStream(fichier));
 		} catch (java.io.IOException e) {
 			e.printStackTrace();
 		}
 	}
 
-	/**
-	 * Print on System.out the XML file.
-	 */
+/**
+ * Print on System.out the XML file.
+ */
 	static void affiche() {
 		try {
-			// Classic Format getPrettyFormat()
+// Classic Format getPrettyFormat()
 			XMLOutputter sortie;
 			sortie = new XMLOutputter(Format.getPrettyFormat());
 			sortie.output(document, System.out);
@@ -74,15 +75,15 @@ public class UnParse {
 		}
 	}
 
-	/**
-	 * Function use for add simple tag (NOM with attribute) with text tag (VAR).
-	 * 
-	 * @param nom
-	 * @param attribute
-	 * @param var
-	 */
-	private void ajouteBaliseSimpleAvecTexte(String nom, String attribute,
-			String var) {
+/**
+ * Function use for add simple tag (NOM with attribute) with text tag (VAR).
+ *
+ * @param nom name of simple tag
+ * @param attribute the attribute of tag
+ * @param var the variable in the tag, often text
+ */
+	private void ajouteBaliseSimpleAvecTexte(final String nom,
+			final String attribute, final String var) {
 		Element balise = new Element(nom);
 		Element text = new Element("text");
 		if (!attribute.equals("")) {
@@ -94,13 +95,13 @@ public class UnParse {
 		this.question.addContent(balise);
 	}
 
-	/**
-	 * Function use for IMAGE tag.
-	 * 
-	 * @param nom
-	 * @param source
-	 */
-	private void ajouteBaliseImage(String nom, String source) {
+/**
+ * Function use for IMAGE tag.
+ *
+ * @param nom name of tag
+ * @param source source of picture
+ */
+	private void ajouteBaliseImage(final String nom, final String source) {
 		Element image = new Element(nom);
 		if (!source.equals("")) {
 			image.setText(source);
@@ -108,11 +109,11 @@ public class UnParse {
 		this.question.addContent(image);
 	}
 
-	/**
-	 * Function use for FEEDBACK tag.
-	 * 
-	 * @param var
-	 */
+/**
+ * Function use for FEEDBACK tag.
+ *
+ * @param var the text or variable
+ */
 	private void ajouteBaliseGeneralFeedback(final String var) {
 		Element generalfeedback = new Element("generalfeedback");
 		Element text = new Element("text");
@@ -121,12 +122,12 @@ public class UnParse {
 		this.question.addContent(generalfeedback);
 	}
 
-	/**
-	 * Function use for DEFAULTGRADE, PENALTY, HIDDEN, SHUFFLEANSWERS tags.
-	 * 
-	 * @param nom
-	 * @param var
-	 */
+/**
+ * Function use for DEFAULTGRADE, PENALTY, HIDDEN, SHUFFLEANSWERS tags.
+ *
+ * @param nom the name of simple tag
+ * @param var the text tag
+ */
 	private void ajouteBaliseSimple(final String nom, final String var) {
 		Element balise = new Element(nom);
 
@@ -134,11 +135,11 @@ public class UnParse {
 		this.question.addContent(balise);
 	}
 
-	/**
-	 * Add Tag Answer.
-	 * 
-	 * @param a
-	 */
+/**
+ * Add Tag Answer.
+ *
+ * @param a create the answer tags
+ */
 	private void ajouteBaliseAnswer(final Answer a) {
 		Element answer = new Element("answer");
 		Element text = new Element("text");
@@ -154,24 +155,25 @@ public class UnParse {
 		this.question.addContent(answer);
 	}
 
-	/**
-	 * Add Tags in Answers List.
-	 * 
-	 * @param l
-	 */
-	private void ajouteListeBalisesAnswer(ArrayList<Answer> l) {
+/**
+ * Add Tags in Answers List.
+ *
+ * @param l the list of answer tag
+ */
+	private void ajouteListeBalisesAnswer(final ArrayList<Answer> l) {
 		Iterator<Answer> i = l.iterator();
 
-		while (i.hasNext())
+		while (i.hasNext()) {
 			ajouteBaliseAnswer((Answer) i.next());
+		}
 	}
 
-	/**
-	 * Add Tags in SubQuestions List.
-	 * 
-	 * @param l
-	 */
-	private void ajouteBaliseSubQuestion(ArrayList<SubQuestion> l) {
+/**
+ * Add Tags in SubQuestions List.
+ *
+ * @param l the list of subquestion tag
+ */
+	private void ajouteBaliseSubQuestion(final ArrayList<SubQuestion> l) {
 		Element subquestion, text, answer;
 
 		Iterator<SubQuestion> i = l.iterator();
@@ -189,263 +191,262 @@ public class UnParse {
 		}
 	}
 
-	/**
-	 * Add Tag Question Calculated.
-	 * 
-	 * @param d
-	 */
-	private void ajouteBaliseQuestionCalculated(Calculated d) {
-		System.out.println("Question calculated");/* TEST LIGN -> */
+/**
+ * Add Tag Question Calculated.
+ * @param d the object calculated
+ */
+	private void ajouteBaliseQuestionCalculated(final Calculated d) {
+		System.out.println("Question calculated"); /* TEST LIGN -> */
 		Attribute classe = new Attribute("type", "calculated");
 		this.question.setAttribute(classe);
 
-		// ADD TAG NAME
+// ADD TAG NAME
 		ajouteBaliseSimpleAvecTexte("name", "", d.getName());
-		// ADD TAG QUESTION TEXT
-		ajouteBaliseSimpleAvecTexte("questiontext", "moodle_auto_format",
-				d.getQuestionText());
-		// ADD TAG IMAGE
+// ADD TAG QUESTION TEXT
+		ajouteBaliseSimpleAvecTexte("questiontext",
+			"moodle_auto_format", d.getQuestionText());
+// ADD TAG IMAGE
 		ajouteBaliseImage("image", "");
-		// ADD TAG GENERALFEEDBACK
+// ADD TAG GENERALFEEDBACK
 		ajouteBaliseSimpleAvecTexte("generalfeedback", "",
 				d.getGeneralFeedback());
-		// ADD TAG DEFAULTGRADE
+// ADD TAG DEFAULTGRADE
 		ajouteBaliseSimple("defaultGrade", d.getDefaultGrade());
-		// ADD TAG PENALTY
+// ADD TAG PENALTY
 		ajouteBaliseSimple("penalty", d.getPenalty());
-		// ADD TAG HIDDEN
+// ADD TAG HIDDEN
 		ajouteBaliseSimple("hidden", d.getHidden());
-		// ADD TAG SHUFFLEANSWERS
+// ADD TAG SHUFFLEANSWERS
 		ajouteBaliseAnswer(d.getAnswer());
-		// Put on trunk
+// Put on trunk
 		racine.addContent(this.question);
 	}
 
-	/**
-	 * Add Tag Question Essay.
-	 * 
-	 * @param e
-	 */
-	private void ajouteBaliseQuestionEssay(Essay e) {
-		System.out.println("Question essay");/* TEST LIGN -> */
+/**
+ * Add Tag Question Essay.
+ *
+ * @param e object essay
+ */
+	private void ajouteBaliseQuestionEssay(final Essay e) {
+		System.out.println("Question essay"); /* TEST LIGN -> */
 		Attribute classe = new Attribute("type", "essay");
 		this.question.setAttribute(classe);
 
-		// ADD TAG NAME
+// ADD TAG NAME
 		ajouteBaliseSimpleAvecTexte("name", "", e.getName());
-		// ADD TAG QUESTION TEXT
-		ajouteBaliseSimpleAvecTexte("questiontext", "moodle_auto_format",
-				e.getQuestionText());
-		// ADD TAG IMAGE
+// ADD TAG QUESTION TEXT
+		ajouteBaliseSimpleAvecTexte("questiontext",
+			"moodle_auto_format", e.getQuestionText());
+// ADD TAG IMAGE
 		ajouteBaliseImage("image", "");
 		// ADD TAG GENERALFEEDBACK
 		ajouteBaliseGeneralFeedback(e.getGeneralFeedback());
-		// ADD TAG DEFAULTGRADE
+// ADD TAG DEFAULTGRADE
 		ajouteBaliseSimple("defaultGrade", e.getDefaultGrade());
-		// ADD TAG PENALTY
+// ADD TAG PENALTY
 		ajouteBaliseSimple("penalty", e.getPenalty());
-		// ADD TAG HIDDEN
+// ADD TAG HIDDEN
 		ajouteBaliseSimple("hidden", e.getHidden());
-		// ADD TAG SHUFFLEANSWERS
+// ADD TAG SHUFFLEANSWERS
 		ajouteBaliseSimple("shuffleanswers", e.getShuffleAnswers());
-		// ADD TAG ANSWER
+// ADD TAG ANSWER
 		ajouteBaliseAnswer(e.getAnswer());
-		// Put on trunk
+// Put on trunk
 		racine.addContent(this.question);
 	}
 
-	/**
-	 * Add Tag Question Numerical.
-	 * 
-	 * @param a
-	 */
-	private void ajouteBaliseQuestionNumerical(NumericalAnswer a) {
-		System.out.println("Question numericalanswer");/* TEST LIGN -> */
+/**
+ * Add Tag Question Numerical.
+ *
+ * @param a object numericalanswer
+ */
+	private void ajouteBaliseQuestionNumerical(final NumericalAnswer a) {
+		/* TEST LIGN -> */
+		System.out.println("Question numericalanswer");
 		Attribute classe = new Attribute("type", "numerical");
 		question.setAttribute(classe);
 
-		// ADD TAG NAME
+// ADD TAG NAME
 		ajouteBaliseSimpleAvecTexte("name", "", a.getName());
-		// ADD TAG QUESTION TEXT
-		ajouteBaliseSimpleAvecTexte("questiontext", "moodle_auto_format",
-				a.getQuestionText());
-		// ADD TAG IMAGE
+// ADD TAG QUESTION TEXT
+		ajouteBaliseSimpleAvecTexte("questiontext",
+			"moodle_auto_format", a.getQuestionText());
+// ADD TAG IMAGE
 		ajouteBaliseImage("image", "");
-		// ADD TAG GENERALFEEDBACK
+// ADD TAG GENERALFEEDBACK
 		ajouteBaliseGeneralFeedback(a.getGeneralFeedback());
-		// ADD TAG DEFAULTGRADE
+// ADD TAG DEFAULTGRADE
 		ajouteBaliseSimple("defaultGrade", a.getDefaultGrade());
-		// ADD TAG PENALTY
+// ADD TAG PENALTY
 		ajouteBaliseSimple("penalty", a.getPenalty());
-		// ADD TAG HIDDEN
+// ADD TAG HIDDEN
 		ajouteBaliseSimple("hidden", a.getHidden());
-		// ADD TAG SHUFFLEANSWERS
+// ADD TAG SHUFFLEANSWERS
 		ajouteBaliseSimple("shuffleanswers", a.getShuffleAnswers());
-		// ADD TAG ANSWER
+// ADD TAG ANSWER
 		ajouteBaliseAnswer(a.getAnswer());
-		// Put on trunk
+// Put on trunk
 		racine.addContent(this.question);
 	}
 
-	/**
-	 * Add Tag Question Matching.
-	 * 
-	 * @param m
-	 */
-	private void ajouteBaliseQuestionMatching(Matching m) {
-		System.out.println("Question matching");/* TEST LIGN -> */
+/**
+ * Add Tag Question Matching.
+ *
+ * @param m object matching
+ */
+	private void ajouteBaliseQuestionMatching(final Matching m) {
+		System.out.println("Question matching"); /* TEST LIGN -> */
 		Attribute classe = new Attribute("type", "matching");
 		question.setAttribute(classe);
-
-		// ADD TAG NAME
+// ADD TAG NAME
 		ajouteBaliseSimpleAvecTexte("name", "", m.getName());
-		// ADD TAG QUESTION TEXT
-		ajouteBaliseSimpleAvecTexte("questiontext", "moodle_auto_format",
-				m.getQuestionText());
-		// ADD TAG IMAGE
+// ADD TAG QUESTION TEXT
+		ajouteBaliseSimpleAvecTexte("questiontext",
+			"moodle_auto_format", m.getQuestionText());
+// ADD TAG IMAGE
 		ajouteBaliseImage("image", "");
-		// ADD TAG GENERALFEEDBACK
+// ADD TAG GENERALFEEDBACK
 		ajouteBaliseSimpleAvecTexte("generalfeedback", "",
 				m.getGeneralFeedback());
-		// ADD TAG DEFAULTGRADE
+// ADD TAG DEFAULTGRADE
 		ajouteBaliseSimple("defaultGrade", m.getDefaultGrade());
-		// ADD TAG PENALTY
+// ADD TAG PENALTY
 		ajouteBaliseSimple("penalty", m.getPenalty());
-		// ADD TAG HIDDEN
+// ADD TAG HIDDEN
 		ajouteBaliseSimple("hidden", m.getHidden());
-		// ADD TAG SHUFFLEANSWERS
+// ADD TAG SHUFFLEANSWERS
 		ajouteBaliseSimple("shuffleanswers", m.getShuffleAnswers());
-		// ADD TAG SUBQUESTIONS
+// ADD TAG SUBQUESTIONS
 		ajouteBaliseSubQuestion(m.getListSubQuestion());
-		// Put on trunk
+// Put on trunk
 		racine.addContent(this.question);
 	}
 
-	/**
-	 * Add Tag Question Multiple Choice.
-	 * 
-	 * @param mc
-	 */
-	private void ajouteBaliseQuestionMultipleChoice(MultipleChoice mc) {
-		System.out.println("Question multichoice");/* TEST LIGN -> */
+/**
+ * Add Tag Question Multiple Choice.
+ *
+ * @param mc object multichoice
+ */
+	private void ajouteBaliseQuestionMultipleChoice(final MultipleChoice mc) {
+		System.out.println("Question multichoice"); /* TEST LIGN -> */
 		Attribute classe = new Attribute("type", "multichoice");
 		question.setAttribute(classe);
 
-		// ADD TAG NAME
+// ADD TAG NAME
 		ajouteBaliseSimpleAvecTexte("name", "", mc.getName());
-		// ADD TAG QUESTION TEXT
+// ADD TAG QUESTION TEXT
 		ajouteBaliseSimpleAvecTexte("questiontext", "html",
 				mc.getQuestionText());
-		// ADD TAG IMAGE
+// ADD TAG IMAGE
 		ajouteBaliseImage("image", mc.getImage());
-		// ADD TAG IMAGE
+// ADD TAG IMAGE
 		ajouteBaliseImage("image_base64", mc.getImage_base64());
-		// ADD TAG GENERALFEEDBACK
+// ADD TAG GENERALFEEDBACK
 		ajouteBaliseSimpleAvecTexte("generalfeedback", "",
 				mc.getGeneralFeedback());
-		// ADD TAG DEFAULTGRADE
+// ADD TAG DEFAULTGRADE
 		ajouteBaliseSimple("defaultGrade", mc.getDefaultGrade());
-		// ADD TAG PENALTY
+// ADD TAG PENALTY
 		ajouteBaliseSimple("penalty", mc.getPenalty());
-		// ADD TAG HIDDEN
+// ADD TAG HIDDEN
 		ajouteBaliseSimple("hidden", mc.getHidden());
-		// ADD TAG SHUFFLEANSWERS
+// ADD TAG SHUFFLEANSWERS
 		ajouteBaliseSimple("shuffleanswers", mc.getShuffleAnswers1());
-		// ADD TAG SINGLE
+// ADD TAG SINGLE
 		ajouteBaliseSimple("single", mc.getSingle());
-		// ADD TAG SHUFFLEANSWERS
+// ADD TAG SHUFFLEANSWERS
 		ajouteBaliseSimple("shuffleanswers2", mc.getShuffleAnswers1());
-		// ADD TAG CORRECTFEEDBACK
+// ADD TAG CORRECTFEEDBACK
 		ajouteBaliseSimpleAvecTexte("correctfeedback", "",
 				mc.getCorrectFeedback());
-		// ADD TAG PARTIALLYCORRECTFEEDBACK
+// ADD TAG PARTIALLYCORRECTFEEDBACK
 		ajouteBaliseSimpleAvecTexte("partiallycorrectfeedback", "",
 				mc.getPartiallyCorrectFeedback());
-		// ADD TAG INCORRECTFEEDBACK
+// ADD TAG INCORRECTFEEDBACK
 		ajouteBaliseSimpleAvecTexte("incorrectfeedback", "",
 				mc.getIncorrectFeedback());
-		// ADD TAG SINGLE
+// ADD TAG SINGLE
 		ajouteBaliseSimple("answernumbering", mc.getAnswerNumbering());
-		// ADD TAGS ANSWER
+// ADD TAGS ANSWER
 		ajouteListeBalisesAnswer(mc.getListAnswer());
-		// Put on trunk
+// Put on trunk
 		racine.addContent(this.question);
 	}
 
-	/**
-	 * Add Tag Question Short Answer.
-	 * 
-	 * @param sa
-	 */
+/**
+ * Add Tag Question Short Answer.
+ *
+ * @param sa object shortanswer
+ */
 	private void ajouteBaliseQuestionShortAnswer(final ShortAnswer sa) {
-		// TEST LIGN ->
+// TEST LIGN ->
 		System.out.println("Question shortanswer");
 		Attribute classe = new Attribute("type", "shortanswer");
 		question.setAttribute(classe);
 
-		// ADD TAG NAME
+// ADD TAG NAME
 		ajouteBaliseSimpleAvecTexte("name", "", sa.getName());
-		// ADD TAG QUESTION TEXT
-		ajouteBaliseSimpleAvecTexte("questiontext", "moodle_auto_format",
-				sa.getQuestionText());
-		// ADD TAG IMAGE
+// ADD TAG QUESTION TEXT
+		ajouteBaliseSimpleAvecTexte("questiontext",
+			"moodle_auto_format", sa.getQuestionText());
+// ADD TAG IMAGE
 		ajouteBaliseImage("image", "");
-		// ADD TAG GENERALFEEDBACK
+// ADD TAG GENERALFEEDBACK
 		ajouteBaliseGeneralFeedback(sa.getGeneralFeedback());
-		// ADD TAG DEFAULTGRADE
+// ADD TAG DEFAULTGRADE
 		ajouteBaliseSimple("defaultGrade", sa.getDefaultGrade());
-		// ADD TAG PENALTY
+// ADD TAG PENALTY
 		ajouteBaliseSimple("penalty", sa.getPenalty());
-		// ADD TAG HIDDEN
+// ADD TAG HIDDEN
 		ajouteBaliseSimple("hidden", sa.getHidden());
-		// ADD TAG SHUFFLEANSWERS
+// ADD TAG SHUFFLEANSWERS
 		ajouteBaliseSimple("shuffleanswers", sa.getShuffleAnswers());
-		// ADD TAG USECASE
+// ADD TAG USECASE
 		ajouteBaliseSimple("usecase", sa.getUseCase());
-		// ADD TAGS ANSWER
+// ADD TAGS ANSWER
 		ajouteListeBalisesAnswer(sa.getListAnswer());
-		// Put on trunk
+// Put on trunk
 		racine.addContent(this.question);
 	}
 
-	/**
-	 * Add Tag Question True False.
-	 * 
-	 * @param tf
-	 */
+/**
+ * Add Tag Question True False.
+ *
+ * @param tf object truefalse
+ */
 	private void ajouteBaliseQuestionTrueFalse(final TrueFalse tf) {
-		System.out.println("Question truefalse");/* TEST LIGN-> */
+		System.out.println("Question truefalse"); /* TEST LIGN-> */
 		Attribute classe = new Attribute("type", "truefalse");
 		question.setAttribute(classe);
 
-		// ADD TAG NAME
+// ADD TAG NAME
 		ajouteBaliseSimpleAvecTexte("name", "", tf.getName());
-		// ADD TAG QUESTION TEXT
-		ajouteBaliseSimpleAvecTexte("questiontext", "moodle_auto_format",
-				tf.getQuestionText());
-		// ADD TAG IMAGE
+// ADD TAG QUESTION TEXT
+		ajouteBaliseSimpleAvecTexte("questiontext",
+			"moodle_auto_format", tf.getQuestionText());
+// ADD TAG IMAGE
 		ajouteBaliseImage("image", "");
-		// ADD TAG GENERALFEEDBACK
+// ADD TAG GENERALFEEDBACK
 		ajouteBaliseGeneralFeedback(tf.getGeneralFeedback());
-		// ADD TAG DEFAULTGRADE
+// ADD TAG DEFAULTGRADE
 		ajouteBaliseSimple("defaultGrade", tf.getDefaultGrade());
-		// ADD TAG PENALTY
+// ADD TAG PENALTY
 		ajouteBaliseSimple("penalty", tf.getPenalty());
-		// ADD TAG HIDDEN
+// ADD TAG HIDDEN
 		ajouteBaliseSimple("hidden", tf.getHidden());
-		// ADD TAG SHUFFLEANSWERS
+// ADD TAG SHUFFLEANSWERS
 		ajouteBaliseSimple("shuffleanswers", tf.getShuffleAnswers());
-		// ADD TAGS ANSWER
+// ADD TAGS ANSWER
 		ajouteListeBalisesAnswer(tf.getListAnswer());
-		// Put on trunk
+// Put on trunk
 		racine.addContent(this.question);
 	}
 
-	/**
-	 * Write A Tag Question for each iteration.
-	 * 
-	 * @param q
-	 */
+/**
+ * Write A Tag Question for each iteration.
+ *
+ * @param q object question
+ */
 	private void parcoursQuestions(final Question q) {
 		switch ((String) q.getClass().getName()) {
 		case "dcll.vbjj.mysimplexml.Calculated":
@@ -473,19 +474,19 @@ public class UnParse {
 		}
 	}
 
-	/**
-	 * Function Run new XML file extracting in object.
-	 * 
-	 * @param lq
-	 */
-	public void run(final ArrayList<Question> lq) {
+/**
+ * Function Run new XML file extracting in object.
+ *
+ * @param lq list of question in order to unparse
+ */
+	public final void run(final ArrayList<Question> lq) {
 		Comment comment;
 
 		Iterator<Question> i = lq.iterator();
 		while (i.hasNext()) {
-			// Every iteration create a new tag question
+// Every iteration create a new tag question
 			this.question = new Element("question");
-			// Add number comment for each question
+// Add number comment for each question
 			comment = new Comment("question: " + nbQuestion++);
 			racine.addContent(comment);
 
